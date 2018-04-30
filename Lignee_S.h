@@ -1,6 +1,6 @@
 #ifndef LIGNEE_S_H
 #define LIGNEE_S_H
-#include <cstdio>
+#include <iostream>
 
 class Lignee_S : public Bacterie{
   public:
@@ -16,7 +16,8 @@ class Lignee_S : public Bacterie{
   
   protected:
   //Attributs  
-
+	double Rbb_;
+	double Rbc_;
 };
 
 

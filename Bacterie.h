@@ -1,6 +1,8 @@
 #ifndef BACTERIE_H
 #define BACTERIE_H
-#include <cstdio>
+#include <iostream>
+#include <vector>
+using namespace std;
 
 class Bacterie{
   public:
@@ -16,7 +18,10 @@ class Bacterie{
   
   protected:
   //Attributs  
-
+	double Pmut_; //la probabilité de mutation
+	double Pdeath_; //la probabilité de mort
+	float W_min_; //la fitness minimale
+	vector<float> c_interne_; //vecteur de concentrations des métabolites dans la cellule (A, B, C)
 };
 
 
