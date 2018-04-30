@@ -7,10 +7,15 @@ using namespace std;
 class Bacterie{
   public:
   //Constructors
+  Bacterie() = delete;
+	Bacterie(float Pmut, float Pdeath, float W_min);
 
   //Destructors
 
   //Getters
+	float Pmut();
+	float Pdeath();
+	float W_min();
 
   //Setters
 
@@ -18,8 +23,8 @@ class Bacterie{
   
   protected:
   //Attributs  
-	double Pmut_; //la probabilité de mutation
-	double Pdeath_; //la probabilité de mort
+	float Pmut_; //la probabilité de mutation
+	float Pdeath_; //la probabilité de mort
 	float W_min_; //la fitness minimale
 	vector<float> c_interne_; //vecteur de concentrations des métabolites dans la cellule (A, B, C)
 };
