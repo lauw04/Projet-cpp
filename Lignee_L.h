@@ -1,6 +1,7 @@
 #ifndef LIGNEE_L_H
 #define LIGNEE_L_H
 #include <iostream>
+#include "Bacterie.h"
 
 class Lignee_L : public Bacterie{
   public:
