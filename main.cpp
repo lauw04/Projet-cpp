@@ -1,5 +1,6 @@
 #include <iostream>
 #include <cstdio>
+#include "Case.h"
 using namespace std;
 
 int main(){
