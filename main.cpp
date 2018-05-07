@@ -9,38 +9,40 @@
 #include <vector>
 using namespace std;
 
-void test_constructeur_bacterie();
-void test_constructeur_lignee_L();
-void test_constructeur_case();
+void test_bacterie();
+void test_case();
 
 int main(){
   cout << "Hello world !" << endl;
-  test_constructeur_bacterie();
+  test_bacterie();
 	cout << endl;
-	test_constructeur_lignee_L();
-	cout << endl;
-  test_constructeur_case();
+  test_case();
   return 0;
 }
 
-void test_constructeur_bacterie(){
-  Bacterie bact(0, 0.02, 0.001);
-  cout << "Pmut = " << bact.Pmut() << endl;
-  cout << "Pdeath = " << bact.Pdeath() << endl;
-  cout << "W_min = " << bact.W_min() << endl;
+void test_bacterie(){
+	cout << "Test constructeur bactéries" << endl;
+  Bacterie b1(0, 0.02, 0.001);
+  cout << "Pmut = " << b1.Pmut() << endl;
+  cout << "Pdeath = " << b1.Pdeath() << endl;
+  cout << "W_min = " << b1.W_min() << endl;
+
+	cout << "Test constructeur bactérie lignée L" << endl;
+	Lignee_L b2(0.1, 0.1);
+	cout << "Raa = " << b2.Raa() << endl;
+	cout << "Rab = " << b2.Rab() << endl;
+
+	cout << "Test constructeur bactérie lignée S" << endl;
+	Lignee_S b3(0.1, 0.1);
+	cout << "Rbb = " << b3.Rbb() << endl;
+	cout << "Rbc = " << b3.Rbc() << endl;
 }
 
-void test_constructeur_lignee_L(){
-	Lignee_L bact(0.1, 0.1);
-	cout << "Raa = " << bact.Raa() << endl;
-	cout << "Rab = " << bact.Rab() << endl;
-}
-
-void test_constructeur_case(){
+void test_case(){
 	Case case1(5.);
 	vector<float> organites = case1.c_externe();
 	cout << "c_externe : " << endl;
 	for(vector<float>::const_iterator it = organites.begin(); it != organites.end(); ++it){
-	cout << *it << endl;
+		cout << *it << endl;
 	}
 }
