@@ -6,10 +6,13 @@
 class Lignee_S : public Bacterie{
   public:
   //Constructors
+  Lignee_S(double Rbb, double Rbc);
 
   //Destructors
 
   //Getters
+  double Rbb();
+  double Rbc();
 
   //Setters
 
