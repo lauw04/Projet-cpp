@@ -22,4 +22,9 @@ double Lignee_S::Rbc(){
 
 //Methods
 
-
+double Lignee_S::metabolisme(double Bout){
+  float B = c_interne_[1];
+	c_interne_[1] += Bout*Rbb_ - B*Rbc_;
+	c_interne_[2] += B*Rbc_;
+	return Bout*(1-Rbb_);
+}

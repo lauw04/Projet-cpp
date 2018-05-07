@@ -17,6 +17,7 @@ class Lignee_L : public Bacterie{
   //Setters
 
   //Methods
+	double metabolisme(double out);
   
   protected:
   //Attributs  

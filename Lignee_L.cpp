@@ -22,4 +22,9 @@ double Lignee_L::Rab(){
 
 //Methods
 
-
+double Lignee_L::metabolisme(double Aout){
+	float A = c_interne_[0];
+	c_interne_[0] += Aout*Raa_ - A*Rab_;
+	c_interne_[1] += A*Rab_;
+	return Aout*(1-Raa_);
+}
