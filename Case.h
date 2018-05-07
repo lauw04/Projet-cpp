@@ -19,6 +19,7 @@ class Case{
   //Setters
 
   //Methods
+  bool isEmpty();
   
   protected:
   //Attributs

@@ -25,10 +25,14 @@ void test_constructeur_bacterie(){
 } 
 
 void test_constructeur_case(){
+	cout << "test ctor et getter" << endl;
 	Case case1(5.);
 	vector<float> organites = case1.c_externe();
 	cout << "c_externe : " << endl;
 	for(vector<float>::const_iterator it = organites.begin(); it != organites.end(); ++it){
 	cout << *it << endl;
 	}
+	cout << "test isEmpty()" << endl;
+	cout << "case1.isEmpty() : " << case1.isEmpty() << endl;
+
 }
