@@ -13,6 +13,7 @@ class Lignee_S : public Bacterie{
   //Getters
   double Rbb();
   double Rbc();
+  double w(); //Fitness
 
   //Setters
 

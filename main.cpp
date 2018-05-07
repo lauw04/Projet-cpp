@@ -24,6 +24,7 @@ int main(){
 }
 
 void test_bacterie(){
+	cout << "TEST BACTERIE" << endl;
 	cout << "Test constructeur bactérie lignée L" << endl;
 	Lignee_L b1(0.1, 0.1);
 	cout << "Raa = " << b1.Raa() << endl;
@@ -56,6 +57,9 @@ void test_bacterie(){
 	for(vector<float>::const_iterator it = organites4.begin(); it != organites4.end(); ++it){
 		cout << *it << endl;
 	}
+
+	cout << "Test getter w (fitness)" << endl;
+	cout << "Fitness : " << b1.w() << endl;
 }
 
 void test_environnement(){

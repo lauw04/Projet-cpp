@@ -18,6 +18,10 @@ double Lignee_L::Rab(){
 	return Rab_;
 }
 
+double Lignee_L::w(){
+  return c_interne_[1];
+}
+
 //Setters
 
 //Methods
