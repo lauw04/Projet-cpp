@@ -9,15 +9,16 @@
 #include <vector>
 using namespace std;
 
-void test_constructor_bacterie();
-void test_environnement();
+void test_bacterie();
+//void test_environnement();
+void test_case();
 
 int main(){
   cout << "Hello world !" << endl;
   test_bacterie();
 	cout << endl;
   test_case();
-	test_environnement();
+	//test_environnement();
   return 0;
 }
 
@@ -38,7 +39,7 @@ void test_bacterie(){
 	cout << "Rbb = " << b3.Rbb() << endl;
 	cout << "Rbc = " << b3.Rbc() << endl;
 }
-
+/*
 void test_environnement(){
   Environnement env(10, 12, 0.5, 0.3,0.8,0.7,0.5);
   cout << "W = " << env.W() << endl;
@@ -49,7 +50,7 @@ void test_environnement(){
   cout << "S = " << env.S() << endl;
   cout << "T = " << env.T() << endl;
 }
-
+*/
 void test_case(){
 	Case case1(5.);
 	vector<float> organites = case1.c_externe();

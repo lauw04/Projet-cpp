@@ -3,11 +3,11 @@
 #include "Environnement.h"
 
 //Constructors
-Environnement::Environnement (int W, int H, double Ainit, /* Case** grille,*/ float D, float L, float S, float T){
+Environnement::Environnement (int W, int H, double Ainit, Case** grille, float D, float L, float S, float T){
   W_ = W; 
   H_ = H;
   Ainit_ = Ainit; 
-  //**grille_ = **grille; 
+  grille_ = grille; 
   D_= D; 
   L_= L; 
   S_ = S; 
@@ -32,9 +32,10 @@ double Environnement::Ainit(){
   return Ainit_;
 }
 
-/*Case** Environnement::grille(){
-  return **grille_;
-}*/
+Case** Environnement::grille(){
+	return grille_;
+}
+
 
 float Environnement::D(){
   return D_;
