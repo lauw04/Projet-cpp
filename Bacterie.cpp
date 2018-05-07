@@ -1,4 +1,5 @@
 #include <cstdio>
+#include <cstdlib>
 #include "Bacterie.h"
 
 //Constructors
@@ -7,6 +8,8 @@ Bacterie::Bacterie(float Pmut, float Pdeath, float W_min){
   Pdeath_ = Pdeath;
   W_min_ = W_min;
 }
+
+Bacterie::Bacterie() = default;
 
 //Destructors
 
