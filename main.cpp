@@ -45,4 +45,7 @@ void test_case(){
 	for(vector<float>::const_iterator it = organites.begin(); it != organites.end(); ++it){
 		cout << *it << endl;
 	}
+	cout << "test isEmpty()" << endl;
+	cout << "case1.isEmpty() : " << case1.isEmpty() << endl;
+
 }

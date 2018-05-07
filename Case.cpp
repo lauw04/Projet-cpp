@@ -20,3 +20,9 @@ vector<float> Case::c_externe(){
 //Setters
 
 //Methods
+bool Case::isEmpty(){
+	if (bacterie_ = nullptr){
+		return true;
+	return false;
+	}
+}
