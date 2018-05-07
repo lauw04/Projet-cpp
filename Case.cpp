@@ -18,9 +18,18 @@ vector<float> Case::c_externe(){
 }
 
 //Setters
+void Case::set_c_externe(vector<float> c_externe){
+	for(int i = 0; i < 3; ++i){
+		c_externe_[i] = c_externe[i];
+	}
+}
+
+/*void Case::set_bacterie(){
+
+}*/
 
 //Methods
-bool Case::isEmpty(){
+bool Case::is_empty(){
 	if (bacterie_ = nullptr){
 		return true;
 	return false;

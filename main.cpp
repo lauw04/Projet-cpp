@@ -37,14 +37,25 @@ void test_constructeur_lignee_L(){
 }
 
 void test_constructeur_case(){
-	cout << "test ctor et getter" << endl;
+	cout << "TEST CASE" << endl;
+	cout << " >> test ctor et getters" << endl;
 	Case case1(5.);
 	vector<float> organites = case1.c_externe();
 	cout << "c_externe : " << endl;
 	for(vector<float>::const_iterator it = organites.begin(); it != organites.end(); ++it){
 	cout << *it << endl;
 	}
-	cout << "test isEmpty()" << endl;
-	cout << "case1.isEmpty() : " << case1.isEmpty() << endl;
+	
+	cout << " >> test is_empty()" << endl;
+	cout << "case1.is_empty() : " << case1.is_empty() << endl;
+	
+	cout << " >> test setters" << endl;
+	organites[1] = 2. ; organites[2] = 3.;
+	case1.set_c_externe(organites);
+	vector<float> organites2 = case1.c_externe();
+	cout << "c_externe : " << endl;
+	for(vector<float>::const_iterator it = organites2.begin(); it != organites2.end(); ++it){
+	cout << *it << endl;
+	}
 
 }

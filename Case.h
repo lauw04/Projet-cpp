@@ -17,9 +17,11 @@ class Case{
 	vector<float> c_externe(); //retourne la concentration en organites A, B et C
 	
   //Setters
-
+	void set_c_externe(vector<float> c_externe);
+	//void set_bacterie();
+	
   //Methods
-  bool isEmpty();
+  bool is_empty(); //determine si la case contient une bactérie ou non.
   
   protected:
   //Attributs
