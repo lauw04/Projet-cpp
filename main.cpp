@@ -10,6 +10,7 @@
 using namespace std;
 
 void test_bacterie();
+void test_environnement();
 void test_case();
 
 int main(){
@@ -17,6 +18,8 @@ int main(){
   test_bacterie();
 	cout << endl;
   test_case();
+	cout << endl;
+	test_environnement();
   return 0;
 }
 
@@ -55,14 +58,40 @@ void test_bacterie(){
 	}
 }
 
+void test_environnement(){
+	cout << "TEST ENVIRONNEMENT" << endl;
+  Environnement env(10, 12, 0.5, 0.3,0.8,0.7,0.5);
+  cout << "W = " << env.W() << endl;
+  cout << "H = " << env.H() << endl;
+  cout << "Ainit = " << env.Ainit() << endl;
+  //cout << "grille = " << env.grille() << endl;
+  cout << "L = " << env.L() << endl;
+  cout << "S = " << env.S() << endl;
+  cout << "T = " << env.T() << endl;
+}
+
 void test_case(){
+	cout << "TEST CASE" << endl;
+	cout << " >> test ctor et getters" << endl;
 	Case case1(5.);
 	vector<float> organites = case1.c_externe();
 	cout << "c_externe : " << endl;
 	for(vector<float>::const_iterator it = organites.begin(); it != organites.end(); ++it){
 		cout << *it << endl;
 	}
-	cout << "test isEmpty()" << endl;
-	cout << "case1.isEmpty() : " << case1.isEmpty() << endl;
+	
+	cout << " >> test is_empty()" << endl;
+	cout << "case1.is_empty() : " << case1.is_empty() << endl;
+	
+	cout << " >> test setters" << endl;
+	organites[1] = 2. ; organites[2] = 3.;
+	case1.set_c_externe(organites);
+	vector<float> organites2 = case1.c_externe();
+	cout << "c_externe : " << endl;
+	for(vector<float>::const_iterator it = organites2.begin(); it != organites2.end(); ++it){
+	cout << *it << endl;
+	}
 
+	case1.set_bacterie('L');
+	cout << "case1.is_empty() : " << case1.is_empty() << " bacterie_ : " << case1.bacterie() << endl;	
 }
