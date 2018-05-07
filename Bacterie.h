@@ -7,7 +7,7 @@ using namespace std;
 class Bacterie{
   public:
   //Constructors
-  Bacterie() = delete;
+  Bacterie();
 	Bacterie(float Pmut, float Pdeath, float W_min);
 
   //Destructors
