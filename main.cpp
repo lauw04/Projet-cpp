@@ -24,24 +24,26 @@ int main(){
 }
 
 void test_bacterie(){
-	cout << "Test constructeur bactéries" << endl;
+	cout << "TEST BACTERIE" << endl;
+	cout << " >> Test constructeur bactéries" << endl;
   Bacterie b1(0, 0.02, 0.001);
   cout << "Pmut = " << b1.Pmut() << endl;
   cout << "Pdeath = " << b1.Pdeath() << endl;
   cout << "W_min = " << b1.W_min() << endl;
 
-	cout << "Test constructeur bactérie lignée L" << endl;
+	cout << " >> Test constructeur bactérie lignée L" << endl;
 	Lignee_L b2(0.1, 0.1);
 	cout << "Raa = " << b2.Raa() << endl;
 	cout << "Rab = " << b2.Rab() << endl;
 
-	cout << "Test constructeur bactérie lignée S" << endl;
+	cout << " >> Test constructeur bactérie lignée S" << endl;
 	Lignee_S b3(0.1, 0.1);
 	cout << "Rbb = " << b3.Rbb() << endl;
 	cout << "Rbc = " << b3.Rbc() << endl;
 }
 
 void test_environnement(){
+	cout << "TEST ENVIRONNEMENT" << endl;
   Environnement env(10, 12, 0.5, 0.3,0.8,0.7,0.5);
   cout << "W = " << env.W() << endl;
   cout << "H = " << env.H() << endl;
@@ -73,5 +75,8 @@ void test_case(){
 	for(vector<float>::const_iterator it = organites2.begin(); it != organites2.end(); ++it){
 	cout << *it << endl;
 	}
-
+	
+	//char a = "L";
+	case1.set_bacterie('L');
+	cout << "case1.is_empty() : " << case1.is_empty() << " bacterie_ : " << case1.bacterie() << endl;	
 }

@@ -15,10 +15,11 @@ class Case{
 
   //Getters
 	vector<float> c_externe(); //retourne la concentration en organites A, B et C
+	Bacterie* bacterie(); // retourne un pointeur vers la bactérie qui est dans la case
 	
   //Setters
 	void set_c_externe(vector<float> c_externe);
-	//void set_bacterie();
+	void set_bacterie(char type); //ajoute une cellule étant donné son génotype
 	
   //Methods
   bool is_empty(); //determine si la case contient une bactérie ou non.

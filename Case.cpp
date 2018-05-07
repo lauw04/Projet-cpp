@@ -2,6 +2,8 @@
 #include <vector>
 #include "Case.h"
 #include "Bacterie.h"
+#include "Lignee_L.h"
+#include "Lignee_S.h"
 using namespace std;
 
 //Constructors
@@ -17,6 +19,10 @@ vector<float> Case::c_externe(){
 	return c_externe_;
 }
 
+Bacterie* Case::bacterie(){
+	return bacterie_;
+}
+
 //Setters
 void Case::set_c_externe(vector<float> c_externe){
 	for(int i = 0; i < 3; ++i){
@@ -24,14 +30,20 @@ void Case::set_c_externe(vector<float> c_externe){
 	}
 }
 
-/*void Case::set_bacterie(){
+void Case::set_bacterie(char type){
+	if (type == 'L'){
+		bacterie_ = new Lignee_L(0.1, 0.1);
+	}
+	else {
+		bacterie_ = new Lignee_S(0.1, 0.1);
+	}
+}
 
-}*/
 
 //Methods
 bool Case::is_empty(){
-	if (bacterie_ = nullptr){
+	if (bacterie_ == nullptr){
 		return true;
-	return false;
 	}
+	return false;
 }
