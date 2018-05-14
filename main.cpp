@@ -10,7 +10,7 @@
 using namespace std;
 
 void test_bacterie();
-void test_environnement();
+//void test_environnement();
 void test_case();
 
 int main(){
@@ -19,7 +19,7 @@ int main(){
 	cout << endl;
   test_case();
 	cout << endl;
-	test_environnement();
+	//test_environnement();
   return 0;
 }
 
@@ -61,8 +61,21 @@ void test_bacterie(){
 	cout << "Test getter w (fitness)" << endl;
 	cout << "Fitness b1 : " << b1.w() << endl;
 	cout << "Fitness b2 : " << b2.w() << endl;
-}
 
+  cout << "Test méthode division" << endl;
+	b1.division();
+	vector<float> organites5 = b1.c_interne();
+	for(vector<float>::const_iterator it = organites5.begin(); it != organites5.end(); ++it){
+		cout << *it << endl;
+	}
+	
+	cout << "Test setter de concentration interne" << endl;
+	b1.set_c_interne(organites1);
+	for(vector<float>::const_iterator it = organites1.begin(); it != organites1.end(); ++it){
+		cout << *it << endl;
+	}
+}
+/*
 void test_environnement(){
 	cout << "TEST ENVIRONNEMENT" << endl;
 	Case case1(0.1);
@@ -86,7 +99,7 @@ void test_environnement(){
   cout << "L = " << env.L() << endl;
   cout << "S = " << env.S() << endl;
   cout << "T = " << env.T() << endl;
-}
+}*/
 
 void test_case(){
 	cout << "TEST CASE" << endl;
@@ -119,4 +132,7 @@ void test_case(){
 	for(vector<float>::const_iterator it = organites.begin(); it != organites.end(); ++it){
 	cout << *it << endl;
 	}
+
+	cout << " >> Test death" << endl;
+	cout << "case1.death() : " << case1.death() << endl;
 }

@@ -19,7 +19,12 @@ double Lignee_S::Rbc(){
 }
 
 double Lignee_S::w(){
-  return c_interne_[2];
+	if (c_interne_[2] > W_min_){
+		return c_interne_[2];
+	}
+	else{
+		return 0;
+	}
 }
 
 //Setters
@@ -31,4 +36,8 @@ double Lignee_S::metabolisme(double Bout){
 	c_interne_[1] += Bout*Rbb_ - B*Rbc_;
 	c_interne_[2] += B*Rbc_;
 	return Bout*(1-Rbb_);
+}
+
+int Lignee_S::nature(){
+	return 2; //2 pour lignée S
 }

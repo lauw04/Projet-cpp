@@ -14,7 +14,7 @@ class Environnement {
     //Destructors
 
     //Setters
-
+    
     //Getters
   int W();
   int H();
@@ -24,10 +24,14 @@ class Environnement {
   float L();
   float S();
   float T();
+  
+    //destructor
+  ~Environnement();
 
     //Methods
   void fill_grid(); //rempli de manière aléatoire la grille avec des cellule L et S.  
-  
+  void reset();
+    
   protected :
 		//Attributs
 		int W_; //la grille

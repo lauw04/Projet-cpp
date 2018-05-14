@@ -19,7 +19,12 @@ double Lignee_L::Rab(){
 }
 
 double Lignee_L::w(){
-  return c_interne_[1];
+	if (c_interne_[1] > W_min_){
+		return c_interne_[1];
+	}
+	else{
+		return 0;
+	}
 }
 
 //Setters
@@ -31,4 +36,8 @@ double Lignee_L::metabolisme(double Aout){
 	c_interne_[0] += Aout*Raa_ - A*Rab_;
 	c_interne_[1] += A*Rab_;
 	return Aout*(1-Raa_);
+}
+
+int Lignee_L::nature(){
+	return 1; //1 pour lignée L
 }

@@ -32,4 +32,17 @@ vector<float> Bacterie::c_interne(){
 
 //Setters
 
+void Bacterie::set_c_interne(vector<float> c){
+	for (int i=0; i<3; ++i){
+		c_interne_[i] = c[i];
+	}
+}
+
 //Methods
+
+vector<float> Bacterie::division(){
+	for (int i=0; i<3; ++i){
+		c_interne_[i] /= 2;
+	}
+	return c_interne_;
+}
