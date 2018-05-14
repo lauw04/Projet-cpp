@@ -5,6 +5,21 @@
 #include "Case.h"
 
 //Constructors
+Environnement::Environnement(){
+	W_ = 32; 
+  H_ = 32;
+  Ainit_= 23; 
+  D_= 0.1; 
+  L_= (H_*W_)/2; 
+  S_= (H_*W_)/2; 
+  T_ = 500;
+	grid_ = new Case* [W_];
+	for(int i=0; i<W_; ++i){
+		grid_[i] = new Case[H_];
+	}
+	fill_grid();
+}
+
 Environnement::Environnement (int W, int H, double Ainit, float D, int L, int S, float T){
   W_ = W; 
   H_ = H;
@@ -30,7 +45,7 @@ void Environnement::fill_grid(){
 	srand(time(NULL));
 	for(int i=0; i<W_; ++i){
 		for(int j=0; j<H_; ++j){
-			if(countL < W_*H_/2 && countS < W_*H_/2){
+			if(countL < L_ && countS < S_){
 				int random = rand()%2 +1;
 				if (random==1){
 					grid_[i][j].set_bacterie('L');
@@ -41,10 +56,10 @@ void Environnement::fill_grid(){
 					countS++;
 				}
 				
-				if(countL == W_*H_/2){
+				if(countL == L_){
 					remain = 'S';
 				}
-				if(countS == W_*H_/2){
+				if(countS == S_){
 					remain = 'L';
 				}
 			}
@@ -128,57 +143,4 @@ void Environnement::death(){
 			}
 		}
 	}
-}
-
-void Environnement::diffusion(){
-	Case** grid_copy;
-	grid_copy = new Case* [W_];
-	for(int i=0; i<W_; ++i){
-		grid_copy[i] = new Case[H_];
-	}
-	for (int i=0; i<H_; ++i){
-		for (int j=0; j<W_; ++j){
-			vector<float> old_c_externe = grid_copy[i][j].c_externe();
-			vector<float> new_c_externe = grid_copy[i][j].c_externe();
-			for (int k=-1; k<2; ++k){
-				for (int l=-1; l<2; ++l){
-					int y = 0; //horizontal
-					int x = 0; //vertical
-					if (i+k > H_-1){
-						x = 0;
-					}
-					else if (i+k < 0){
-						x = H_-1;
-					}
-					else{
-						x = i+k;
-					}
-					if (j+l > W_-1){
-						y = 0;
-					}
-					else if (j+l < 0){
-						y = W_-1;
-					}
-					else{
-						y = j+l;
-					}
-					if (k != 0 && l != 0){
-						for (int m=0; m<3; ++m){
-							new_c_externe[m] = new_c_externe[m] + D_*(grid_copy[x][y].c_externe()[m]);
-						}
-					}
-				}
-			}
-			for (int m=0; m<3; ++m){
-				new_c_externe[m] = new_c_externe[m] - 9*D_*old_c_externe[m];
-			}
-			grid_[i][j].set_c_externe(new_c_externe);
-		}
-	}
-	for (int i=0; i<H_; ++i){
-		delete[] grid_copy[i];
-	}
-	delete[] grid_copy;
-	
-					
 }
