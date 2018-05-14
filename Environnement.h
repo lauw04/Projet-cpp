@@ -26,6 +26,7 @@ class Environnement {
   float T();
 
     //Methods
+  void reset();
     
   protected :
 		//Attributs

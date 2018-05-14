@@ -2,6 +2,7 @@
 #include <cstdlib>
 #include "Environnement.h"
 
+
 //Constructors
 Environnement::Environnement (int W, int H, double Ainit, Case** grille, float D, float L, float S, float T){
   W_ = W; 
@@ -54,7 +55,9 @@ float Environnement::T(){
 }
 
 //Methods
-    
+/*void Environnement::reset(){
+	bacteries_={Ainit,0.,0.};
+}*/
 //Attributs
 
 
