@@ -24,6 +24,7 @@ class Case{
   //Methods
   bool is_empty(); //determine si la case contient une bactérie ou non.
   void reset(float Ainit); //re-initialise les concentration dans chaque cellule
+
   protected:
   //Attributs
 

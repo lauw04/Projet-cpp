@@ -25,6 +25,7 @@ class Bacterie{
   //Methods
   virtual double metabolisme(double out) = 0;
   vector<float> division();
+  virtual int nature() = 0;
   
   protected:
   //Attributs  
