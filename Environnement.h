@@ -10,7 +10,7 @@ class Environnement {
 	public :
 	//Constructors
   Environnement() = delete;
-  Environnement(int W, int H, double Ainit, Case** grille, float D, float L, float S, float T);
+  Environnement(int W, int H, double Ainit, float D, float L, float S, float T);
     //Destructors
 
     //Setters

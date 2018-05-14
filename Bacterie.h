@@ -17,11 +17,13 @@ class Bacterie{
 	float Pdeath();
 	float W_min();
   vector<float> c_interne();
+	virtual double w() = 0;
 
   //Setters
 
   //Methods
   virtual double metabolisme(double out) = 0;
+  vector<float> division();
   
   protected:
   //Attributs  

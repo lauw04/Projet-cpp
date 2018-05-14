@@ -33,3 +33,10 @@ vector<float> Bacterie::c_interne(){
 //Setters
 
 //Methods
+
+vector<float> Bacterie::division(){
+	for (int i=0; i<3; ++i){
+		c_interne_[i] /= 2;
+	}
+	return c_interne_;
+}
