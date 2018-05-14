@@ -32,6 +32,7 @@ class Environnement {
   void fill_grid(); //remplit de manière aléatoire la grille avec des cellule L et S.  
   void reset();
 	void death();
+	void diffusion();
     
   protected :
 	//Attributs
