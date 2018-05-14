@@ -129,3 +129,17 @@ void Environnement::death(){
 		}
 	}
 }
+
+/*void Environnement::competition(){
+  for (int i=0; i<H_;++i){
+    for (int j=0; i<W_; j++){
+      if(grille[i][j].is_empty()== true){ //look for empty case
+        int max_fitness=0;
+        int v_max =0;
+        int h_max=0;
+        for (int k=-1; k<2;k++){
+          for (int l=-1; l<2; l++){
+            if(k!=0 && l!=0){
+              int v=0;
+              int h=0;*/
+              
