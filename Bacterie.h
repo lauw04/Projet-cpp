@@ -16,17 +16,19 @@ class Bacterie{
 	float Pmut();
 	float Pdeath();
 	float W_min();
+  vector<float> c_interne();
 
   //Setters
 
   //Methods
+  virtual double metabolisme(double out) = 0;
   
   protected:
   //Attributs  
 	float Pmut_; //la probabilité de mutation
 	float Pdeath_; //la probabilité de mort
 	float W_min_; //la fitness minimale
-	vector<float> c_interne_; //vecteur de concentrations des métabolites dans la cellule (A, B, C)
+	vector<float> c_interne_ = {1,2,3}; //vecteur de concentrations des métabolites dans la cellule (A, B, C)
 };
 
 

@@ -13,10 +13,12 @@ class Lignee_L : public Bacterie{
   //Getters
   double Raa();
   double Rab();
+	double w(); //Fitness
 
   //Setters
 
   //Methods
+	double metabolisme(double out);
   
   protected:
   //Attributs  

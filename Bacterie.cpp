@@ -26,6 +26,10 @@ float Bacterie::W_min(){
   return W_min_;
 }
 
+vector<float> Bacterie::c_interne(){
+	return c_interne_;
+}
+
 //Setters
 
 //Methods
