@@ -18,6 +18,10 @@ double Lignee_S::Rbc(){
 	return Rbc_;
 }
 
+double Lignee_S::w(){
+  return c_interne_[2];
+}
+
 //Setters
 
 //Methods

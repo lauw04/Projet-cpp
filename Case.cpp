@@ -7,6 +7,8 @@
 using namespace std;
 
 //Constructors
+Case::Case() = default;
+
 Case::Case(float Ainit){
 	c_externe_[0] = Ainit;
 	bacterie_ = nullptr;
@@ -46,4 +48,8 @@ bool Case::is_empty(){
 		return true;
 	}
 	return false;
+}
+
+void Case::reset(float Ainit){
+	c_externe_ = {Ainit, 0., 0.};
 }

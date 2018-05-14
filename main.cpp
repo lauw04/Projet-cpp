@@ -24,6 +24,7 @@ int main(){
 }
 
 void test_bacterie(){
+	cout << "TEST BACTERIE" << endl;
 	cout << "Test constructeur bactérie lignée L" << endl;
 	Lignee_L b1(0.1, 0.1);
 	cout << "Raa = " << b1.Raa() << endl;
@@ -56,15 +57,31 @@ void test_bacterie(){
 	for(vector<float>::const_iterator it = organites4.begin(); it != organites4.end(); ++it){
 		cout << *it << endl;
 	}
+
+	cout << "Test getter w (fitness)" << endl;
+	cout << "Fitness b1 : " << b1.w() << endl;
+	cout << "Fitness b2 : " << b2.w() << endl;
 }
 /*
 void test_environnement(){
 	cout << "TEST ENVIRONNEMENT" << endl;
-  Environnement env(10, 12, 0.5, 0.3,0.8,0.7,0.5);
+	Case case1(0.1);
+	Case case2(0.2);
+	Case case3(0.3);
+	Case case4(0.4);
+	//Case tab[2][2];
+  Case **tableau2d = new Case* [2];
+  for (int i = 0; i<2; ++i){
+    tableau2d[i] = new Case[2];
+  }
+	tableau2d[0][0] = case1;
+	tableau2d[0][1] = case2;
+	tableau2d[1][0] = case3;
+	tableau2d[1][1] = case4;
+  Environnement env(10, 12, 0.5, tableau2d, 0.3, 0.8, 0.7, 0.5);
   cout << "W = " << env.W() << endl;
   cout << "H = " << env.H() << endl;
   cout << "Ainit = " << env.Ainit() << endl;
-  //cout << "grille = " << env.grille() << endl;
   cout << "L = " << env.L() << endl;
   cout << "S = " << env.S() << endl;
   cout << "T = " << env.T() << endl;
@@ -91,7 +108,14 @@ void test_case(){
 	for(vector<float>::const_iterator it = organites2.begin(); it != organites2.end(); ++it){
 	cout << *it << endl;
 	}
-
+	
 	case1.set_bacterie('L');
-	cout << "case1.is_empty() : " << case1.is_empty() << " bacterie_ : " << case1.bacterie() << endl;	
+	cout << "case1.is_empty() : " << case1.is_empty() << " bacterie_ : " << case1.bacterie() << endl;
+	
+	cout << " >> Test reset" << endl;
+	case1.reset(5.);
+	organites = case1.c_externe();
+	for(vector<float>::const_iterator it = organites.begin(); it != organites.end(); ++it){
+	cout << *it << endl;
+	}
 }
