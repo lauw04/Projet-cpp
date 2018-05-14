@@ -56,6 +56,17 @@ float Environnement::T(){
   return T_;
 }
 
+//destructor
+
+Environnement::~Environnement(){
+  for(int i =0; i<H_; ++i){
+    if (grille_[i]!=nullptr){
+      delete[] grille_[i];
+      }
+    }
+  delete[] grille_;
+}
+
 //Methods
 void Environnement::reset(){
   for (int i=0; i<H_; ++i){

@@ -24,6 +24,9 @@ class Environnement {
   float L();
   float S();
   float T();
+  
+    //destructor
+  ~Environnement();
 
     //Methods
   void reset();
