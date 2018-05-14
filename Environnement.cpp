@@ -1,4 +1,5 @@
 #include <cstdio>
+#include <iostream>
 #include <cstdlib>
 #include "Environnement.h"
 #include "Case.h"
@@ -12,16 +13,55 @@ Environnement::Environnement (int W, int H, double Ainit, float D, int L, int S,
   L_= L; 
   S_ = S; 
   T_ = T;
-	grille_ = new Case* [W_];
+	grid_ = new Case* [W_];
 	for(int i=0; i<W_; ++i){
-		grille_[i] = new Case[H_];
+		grid_[i] = new Case[H_];
 	}
+	fill_grid();
 }
     
 //Destructors
 
 //Setters
-   
+void Environnement::fill_grid(){
+	int countL = 0;
+	int countS = 0;
+	char remain;
+	srand(time(NULL));
+	for(int i=0; i<W_; ++i){
+		for(int j=0; j<H_; ++j){
+			if(countL < W_*H_/2 && countS < W_*H_/2){
+				int random = rand()%2 +1;
+				if (random==1){
+					grid_[i][j].set_bacterie('L');
+					countL++;
+				}
+				else {
+					grid_[i][j].set_bacterie('S');
+					countS++;
+				}
+				
+				if(countL == W_*H_/2){
+					remain = 'S';
+				}
+				if(countS == W_*H_/2){
+					remain = 'L';
+				}
+			}
+			else {
+				grid_[i][j].set_bacterie(remain);
+				if(remain == 'L'){
+					countL++;
+				}
+				if(remain == 'S'){
+					countS++;
+				}
+			}
+		}
+	}
+	std::cout << countS << countL << std::endl;
+}
+
 //Getters
 int Environnement::W(){
   return W_;
@@ -35,8 +75,8 @@ double Environnement::Ainit(){
   return Ainit_;
 }
 
-Case** Environnement::grille(){
-	return grille_;
+Case** Environnement::grid(){
+	return grid_;
 }
 
 
@@ -60,18 +100,18 @@ float Environnement::T(){
 
 Environnement::~Environnement(){
   for(int i =0; i<H_; ++i){
-    if (grille_[i]!=nullptr){
-      delete[] grille_[i];
+    if (grid_[i]!=nullptr){
+      delete[] grid_[i];
       }
     }
-  delete[] grille_;
+  delete[] grid_;
 }
 
 //Methods
 void Environnement::reset(){
   for (int i=0; i<H_; ++i){
     for (int j=0; j<W_; ++j){
-      grille_[i][j].reset(Ainit_);
+      grid_[i][j].reset(Ainit_);
       }
     }
 }

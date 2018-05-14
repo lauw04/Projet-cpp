@@ -91,7 +91,7 @@ void test_environnement(){
 	tableau2d[0][1] = case2;
 	tableau2d[1][0] = case3;
 	tableau2d[1][1] = case4;
-  Environnement env(10, 12, 0.5, 0.3, 0.8, 0.7, 0.5);
+  Environnement env(4, 4, 0.5, 0.3, 0.8, 0.7, 0.5);
   cout << "W = " << env.W() << endl;
   cout << "H = " << env.H() << endl;
   cout << "Ainit = " << env.Ainit() << endl;

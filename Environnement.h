@@ -19,7 +19,7 @@ class Environnement {
   int W();
   int H();
   double Ainit();
-  Case** grille();
+  Case** grid();
   float D();
   int L();
   int S();
@@ -29,6 +29,7 @@ class Environnement {
   ~Environnement();
 
   //Methods
+  void fill_grid(); //remplit de manière aléatoire la grille avec des cellule L et S.  
   void reset();
 	void death();
     
