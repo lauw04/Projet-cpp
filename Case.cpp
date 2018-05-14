@@ -78,6 +78,7 @@ int Case::death(){
 				c_externe_[i] += organites[i];
 			}
 		}
+		delete bacterie_;
 		bacterie_ = nullptr;
 	}
 	if (lignee == 'L'){

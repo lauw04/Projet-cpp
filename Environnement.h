@@ -38,7 +38,7 @@ class Environnement {
 	int W_; //la grille
 	int H_; //la grille
 	double Ainit_; //Concentration de glucose initial
-	Case** grille_; //grille 2D
+	Case** grid_; //grille 2D
 	float D_; //Taux de diffusion
 	int L_; //Nombre bactéries issues de la souche L
 	int S_; //Nombre bactéries issues de la souche S

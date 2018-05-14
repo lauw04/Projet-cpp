@@ -119,7 +119,7 @@ void Environnement::death(){
 	int case_death;
 	for (int i=0; i<H_; ++i){
 		for (int j=0; j<W_; ++j){
-			case_death = grille_[i][j].death();
+			case_death = grid_[i][j].death();
 			if (case_death == 1){
 				L_--;
 			}
