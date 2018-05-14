@@ -1,6 +1,7 @@
 #include <cstdio>
 #include <cstdlib>
 #include "Environnement.h"
+#include "Case.h"
 
 
 //Constructors
@@ -55,9 +56,14 @@ float Environnement::T(){
 }
 
 //Methods
-/*void Environnement::reset(){
-	bacteries_={Ainit,0.,0.};
-}*/
+void Environnement::reset(){
+  for (int i=0; i<H_; ++i){
+    for (int j=0; j<W_; ++j){
+      grille_[i][j].reset(Ainit_);
+      }
+    }
+}
+
 //Attributs
 
 
