@@ -11,7 +11,8 @@ class Case{
   Case();
   Case(float Ainit);
   
-  //Destructors
+  //Destructors*
+  ~Case();
 
   //Getters
 	vector<float> c_externe(); //retourne la concentration en organites A, B et C

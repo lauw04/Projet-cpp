@@ -15,6 +15,11 @@ Case::Case(float Ainit){
 }
 
 //Destructors
+Case::~Case(){
+	if(bacterie_ != nullptr){
+		delete bacterie_;
+	}
+}
 
 //Getters
 vector<float> Case::c_externe(){

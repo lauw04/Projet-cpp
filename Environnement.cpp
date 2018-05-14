@@ -59,7 +59,6 @@ void Environnement::fill_grid(){
 			}
 		}
 	}
-	std::cout << countS << countL << std::endl;
 }
 
 //Getters
@@ -116,6 +115,5 @@ void Environnement::reset(){
     }
 }
 
-//Attributs
 
 
