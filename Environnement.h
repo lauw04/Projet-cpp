@@ -9,10 +9,10 @@ class Environnement {
 	
 	public :
 	//Constructors
-  Environnement() = delete;
+  explicit Environnement(); //Ctor par défaut utilisé pour l'exemple du projet
   Environnement(int W, int H, double Ainit, float D, int L, int S, float T);
   //Destructors
-
+  ~Environnement();
   //Setters
     
   //Getters
@@ -24,9 +24,6 @@ class Environnement {
   int L();
   int S();
   float T();
-  
-  //destructor
-  ~Environnement();
 
   //Methods
   void fill_grid(); //remplit de manière aléatoire la grille avec des cellule L et S.  
@@ -38,7 +35,7 @@ class Environnement {
 	int W_; //la grille
 	int H_; //la grille
 	double Ainit_; //Concentration de glucose initial
-	Case** grille_; //grille 2D
+	Case** grid_; //grille 2D
 	float D_; //Taux de diffusion
 	int L_; //Nombre bactéries issues de la souche L
 	int S_; //Nombre bactéries issues de la souche S
