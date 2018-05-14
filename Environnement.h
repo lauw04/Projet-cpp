@@ -14,25 +14,26 @@ class Environnement {
     //Destructors
 
     //Setters
-    
+
     //Getters
   int W();
   int H();
   double Ainit();
-  Case** grille();
+  Case** grid();
   float D();
   float L();
   float S();
   float T();
 
     //Methods
-    
+  void fill_grid(); //rempli de manière aléatoire la grille avec des cellule L et S.  
+  
   protected :
 		//Attributs
 		int W_; //la grille
 		int H_; //la grille
 		double Ainit_; //Concentration de glucose initial
-		Case** grille_; //grille 2D
+		Case** grid_; //grille 2D
 		float D_; //Taux de diffusion
 		float L_; //Nombre bactéries issues de la souche L
 		float S_; //Nombre bactéries issues de la souche S
