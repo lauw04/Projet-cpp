@@ -37,3 +37,7 @@ double Lignee_S::metabolisme(double Bout){
 	c_interne_[2] += B*Rbc_;
 	return Bout*(1-Rbb_);
 }
+
+int Lignee_S::nature(){
+	return 2; //2 pour lignée S
+}
