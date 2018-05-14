@@ -8,7 +8,7 @@ using namespace std;
 class Case{
   public:
   //Constructors
-  Case() = delete;
+  Case();
   Case(float Ainit);
   
   //Destructors

@@ -7,6 +7,8 @@
 using namespace std;
 
 //Constructors
+Case::Case() = default;
+
 Case::Case(float Ainit){
 	c_externe_[0] = Ainit;
 	bacterie_ = nullptr;
