@@ -19,7 +19,12 @@ double Lignee_S::Rbc(){
 }
 
 double Lignee_S::w(){
-  return c_interne_[2];
+	if (c_interne_[2] > W_min_){
+		return c_interne_[2];
+	}
+	else{
+		return 0;
+	}
 }
 
 //Setters

@@ -61,6 +61,13 @@ void test_bacterie(){
 	cout << "Test getter w (fitness)" << endl;
 	cout << "Fitness b1 : " << b1.w() << endl;
 	cout << "Fitness b2 : " << b2.w() << endl;
+
+  cout << "Test méthode division" << endl;
+	b1.division();
+	vector<float> organites5 = b1.c_interne();
+	for(vector<float>::const_iterator it = organites5.begin(); it != organites5.end(); ++it){
+		cout << *it << endl;
+	}
 }
 
 void test_environnement(){

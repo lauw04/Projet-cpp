@@ -19,7 +19,12 @@ double Lignee_L::Rab(){
 }
 
 double Lignee_L::w(){
-  return c_interne_[1];
+	if (c_interne_[1] > W_min_){
+		return c_interne_[1];
+	}
+	else{
+		return 0;
+	}
 }
 
 //Setters
