@@ -100,18 +100,18 @@ float Environnement::T(){
 
 Environnement::~Environnement(){
   for(int i =0; i<H_; ++i){
-    if (grille_[i]!=nullptr){
-      delete[] grille_[i];
+    if (grid_[i]!=nullptr){
+      delete[] grid_[i];
       }
     }
-  delete[] grille_;
+  delete[] grid_;
 }
 
 //Methods
 void Environnement::reset(){
   for (int i=0; i<H_; ++i){
     for (int j=0; j<W_; ++j){
-      grille_[i][j].reset(Ainit_);
+      grid_[i][j].reset(Ainit_);
       }
     }
 }
