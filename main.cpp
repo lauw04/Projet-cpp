@@ -78,20 +78,8 @@ void test_bacterie(){
 
 void test_environnement(){
 	cout << "TEST ENVIRONNEMENT" << endl;
-	Case case1(0.1);
-	Case case2(0.2);
-	Case case3(0.3);
-	Case case4(0.4);
-	//Case tab[2][2];
-  Case **tableau2d = new Case* [2];
-  for (int i = 0; i<2; ++i){
-    tableau2d[i] = new Case[2];
-  }
-	tableau2d[0][0] = case1;
-	tableau2d[0][1] = case2;
-	tableau2d[1][0] = case3;
-	tableau2d[1][1] = case4;
-  Environnement env(4, 4, 0.5, 0.3, 0.8, 0.7, 0.5);
+
+  Environnement env(4, 4, 0.5, 0.3, 8, 7, 0.5);
   cout << "W = " << env.W() << endl;
   cout << "H = " << env.H() << endl;
   cout << "Ainit = " << env.Ainit() << endl;
@@ -99,6 +87,15 @@ void test_environnement(){
   cout << "L = " << env.L() << endl;
   cout << "S = " << env.S() << endl;
   cout << "T = " << env.T() << endl;
+  
+  Environnement envi;
+  cout << "W = " << envi.W() << endl;
+  cout << "H = " << envi.H() << endl;
+  cout << "Ainit = " << envi.Ainit() << endl;
+  cout << "D = " << envi.D() << endl;
+  cout << "L = " << envi.L() << endl;
+  cout << "S = " << envi.S() << endl;
+  cout << "T = " << envi.T() << endl;
 }
 
 void test_case(){
