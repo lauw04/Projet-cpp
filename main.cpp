@@ -68,6 +68,12 @@ void test_bacterie(){
 	for(vector<float>::const_iterator it = organites5.begin(); it != organites5.end(); ++it){
 		cout << *it << endl;
 	}
+	
+	cout << "Test setter de concentration interne" << endl;
+	b1.set_c_interne(organites1);
+	for(vector<float>::const_iterator it = organites1.begin(); it != organites1.end(); ++it){
+		cout << *it << endl;
+	}
 }
 
 void test_environnement(){

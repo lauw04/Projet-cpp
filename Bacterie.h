@@ -20,6 +20,7 @@ class Bacterie{
 	virtual double w() = 0;
 
   //Setters
+  void set_c_interne(vector<float> c);
 
   //Methods
   virtual double metabolisme(double out) = 0;
