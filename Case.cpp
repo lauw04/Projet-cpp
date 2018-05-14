@@ -70,7 +70,7 @@ int Case::death(){
 		vector<float> organites = bacterie_ -> c_interne();
 		if (nombre < bacterie_ -> Pdeath()){
 			for (int i=0; i<3; ++i){
-				c_externe_[i] = organites[i];
+				c_externe_[i] += organites[i];
 			}
 		}
 		bacterie_ = nullptr;
