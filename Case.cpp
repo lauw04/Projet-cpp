@@ -47,3 +47,7 @@ bool Case::is_empty(){
 	}
 	return false;
 }
+
+void Case::reset(float Ainit){
+	c_externe_ = {Ainit, 0., 0.};
+}

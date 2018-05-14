@@ -56,7 +56,7 @@ void test_environnement(){
 
 void test_case(){
 	cout << "TEST CASE" << endl;
-	cout << " >> test ctor et getters" << endl;
+	cout << " >> Test ctor et getters" << endl;
 	Case case1(5.);
 	vector<float> organites = case1.c_externe();
 	cout << "c_externe : " << endl;
@@ -64,10 +64,10 @@ void test_case(){
 		cout << *it << endl;
 	}
 	
-	cout << " >> test is_empty()" << endl;
+	cout << " >> Test is_empty()" << endl;
 	cout << "case1.is_empty() : " << case1.is_empty() << endl;
 	
-	cout << " >> test setters" << endl;
+	cout << " >> Test setters" << endl;
 	organites[1] = 2. ; organites[2] = 3.;
 	case1.set_c_externe(organites);
 	vector<float> organites2 = case1.c_externe();
@@ -76,7 +76,13 @@ void test_case(){
 	cout << *it << endl;
 	}
 	
-	//char a = "L";
 	case1.set_bacterie('L');
-	cout << "case1.is_empty() : " << case1.is_empty() << " bacterie_ : " << case1.bacterie() << endl;	
+	cout << "case1.is_empty() : " << case1.is_empty() << " bacterie_ : " << case1.bacterie() << endl;
+	
+	cout << " >> Test reset" << endl;
+	case1.reset(5.);
+	organites = case1.c_externe();
+	for(vector<float>::const_iterator it = organites.begin(); it != organites.end(); ++it){
+	cout << *it << endl;
+	}
 }
