@@ -5,7 +5,7 @@
 #include "Case.h"
 
 //Constructors
-Environnement::Environnement (int W, int H, double Ainit, float D, float L, float S, float T){
+Environnement::Environnement (int W, int H, double Ainit, float D, int L, int S, float T){
   W_ = W; 
   H_ = H;
   Ainit_ = Ainit; 
@@ -83,11 +83,11 @@ float Environnement::D(){
   return D_;
 }
 
-float Environnement::L(){
+int Environnement::L(){
   return L_;
 }
 
-float Environnement::S(){
+int Environnement::S(){
   return S_;
 }
 
@@ -115,5 +115,17 @@ void Environnement::reset(){
     }
 }
 
-
-
+void Environnement::death(){
+	int case_death;
+	for (int i=0; i<H_; ++i){
+		for (int j=0; j<W_; ++j){
+			case_death = grille_[i][j].death();
+			if (case_death == 1){
+				L_--;
+			}
+			if (case_death == 2){
+				S_--;
+			}
+		}
+	}
+}
