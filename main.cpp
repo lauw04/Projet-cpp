@@ -10,7 +10,7 @@
 using namespace std;
 
 void test_bacterie();
-void test_environnement();
+//void test_environnement();
 void test_case();
 
 int main(){
@@ -19,7 +19,7 @@ int main(){
 	cout << endl;
   test_case();
 	cout << endl;
-	test_environnement();
+	//test_environnement();
   return 0;
 }
 
@@ -75,7 +75,7 @@ void test_bacterie(){
 		cout << *it << endl;
 	}
 }
-
+/*
 void test_environnement(){
 	cout << "TEST ENVIRONNEMENT" << endl;
 	Case case1(0.1);
@@ -99,7 +99,7 @@ void test_environnement(){
   cout << "L = " << env.L() << endl;
   cout << "S = " << env.S() << endl;
   cout << "T = " << env.T() << endl;
-}
+}*/
 
 void test_case(){
 	cout << "TEST CASE" << endl;
