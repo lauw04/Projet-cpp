@@ -1,18 +1,21 @@
 #include <cstdio>
 #include <cstdlib>
 #include "Environnement.h"
+#include "Case.h"
 
 //Constructors
-Environnement::Environnement (int W, int H, double Ainit, Case** grille, float D, float L, float S, float T){
+Environnement::Environnement (int W, int H, double Ainit, float D, float L, float S, float T){
   W_ = W; 
   H_ = H;
   Ainit_ = Ainit; 
-  grille_ = grille; 
   D_= D; 
   L_= L; 
   S_ = S; 
   T_ = T;
-
+	grille_ = new Case* [W_];
+	for(int i=0; i<W_; ++i){
+		grille_[i] = new Case[H_];
+	}
 }
     
 //Destructors
