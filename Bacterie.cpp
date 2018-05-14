@@ -9,7 +9,11 @@ Bacterie::Bacterie(float Pmut, float Pdeath, float W_min){
   W_min_ = W_min;
 }
 
-Bacterie::Bacterie() = default;
+Bacterie::Bacterie(){
+	Pmut_ = 0.0;
+	Pdeath_ = 0.02;
+	W_min_ = 0.001;
+}
 
 //Destructors
 

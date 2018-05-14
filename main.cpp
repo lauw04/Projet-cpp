@@ -132,4 +132,5 @@ void test_case(){
 
 	cout << " >> Test death" << endl;
 	cout << "case1.death() : " << case1.death() << endl;
+	cout << case1.bacterie() << endl;
 }
