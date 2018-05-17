@@ -30,15 +30,15 @@ float Bacterie::W_min(){
   return W_min_;
 }
 
-vector<float> Bacterie::c_interne(){
-	return c_interne_;
+vector<float> Bacterie::internal_c(){
+	return internal_c_;
 }
 
 //Setters
 
-void Bacterie::set_c_interne(vector<float> c){
+void Bacterie::set_internal_c(vector<float> c){
 	for (int i=0; i<3; ++i){
-		c_interne_[i] = c[i];
+		internal_c_[i] = c[i];
 	}
 }
 
@@ -46,7 +46,7 @@ void Bacterie::set_c_interne(vector<float> c){
 
 vector<float> Bacterie::division(){
 	for (int i=0; i<3; ++i){
-		c_interne_[i] /= 2;
+		internal_c_[i] /= 2;
 	}
-	return c_interne_;
+	return internal_c_;
 }
