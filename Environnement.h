@@ -31,6 +31,7 @@ class Environnement {
 	void death();
 	void diffusion();
 	void metabolism();
+	void run();
     
   protected :
 	//Attributs

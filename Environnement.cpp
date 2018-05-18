@@ -18,6 +18,7 @@ Environnement::Environnement(){
 		grid_[i] = new Case[H_];
 	}
 	fill_grid();
+	t_simul_ = 5000;
 }
 
 Environnement::Environnement (int W, int H, double Ainit, float D, int L, int S, float T, int t_simul){
@@ -141,5 +142,25 @@ void Environnement::death(){
 				S_--;
 			}
 		}
+	}
+}
+
+void Environnement::run(){
+	for (int t=0; t<t_simul_; ++t){
+		if (t%(T_) == 0){
+			reset();
+		}
+		diffusion();
+		death();
+		//competition();
+		if (L_ == 0 && S_ == 0){
+			return 0; //Extinction
+		}
+		else if (L_ != 0 && S_ != 0){
+			return 1; //Cohabitation
+		}
+		else if (L_ != 0 && S_ == 0){
+			return 2; //Exclusion
+		}			
 	}
 }
