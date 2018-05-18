@@ -5,6 +5,21 @@
 #include "Case.h"
 
 //Constructors
+Environnement::Environnement(){
+  W_ = 32; 
+  H_ = 32;
+  Ainit_ = 23; 
+  D_= 0.1; 
+  L_= W_*H_/2; 
+  S_ = W_*H_/2; 
+  T_ = 500;
+	grid_ = new Case* [W_];
+	for(int i=0; i<W_; ++i){
+		grid_[i] = new Case[H_];
+	}
+	fill_grid();
+}
+
 Environnement::Environnement (int W, int H, double Ainit, float D, int L, int S, float T, int t_simul){
   W_ = W; 
   H_ = H;
@@ -128,12 +143,3 @@ void Environnement::death(){
 		}
 	}
 }
-
-void Environnement::metabolism(){
-	for (int i=0; i<H_; ++i){
-		for (int j=0; j<W_; ++i){
-			grid_[i][j].metabolism();
-		}
-	}
-}
-
