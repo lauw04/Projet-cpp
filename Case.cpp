@@ -10,81 +10,81 @@ using namespace std;
 Case::Case() = default;
 
 Case::Case(float Ainit){
-	c_externe_[0] = Ainit;
-	bacterie_ = nullptr;
+	external_c_[0] = Ainit;
+	bacteria_ = nullptr;
 }
 
 //Destructors
 Case::~Case(){
-	if(bacterie_ != nullptr){
-		delete bacterie_;
+	if(bacteria_ != nullptr){
+		delete bacteria_;
 	}
 }
 
 //Getters
-vector<float> Case::c_externe(){
-	return c_externe_;
+vector<float> Case::external_c(){
+	return external_c_;
 }
 
-Bacterie* Case::bacterie(){
-	return bacterie_;
+Bacterie* Case::bacteria(){
+	return bacteria_;
 }
 
 //Setters
-void Case::set_c_externe(vector<float> c_externe){
+void Case::set_external_c(vector<float> c_externe){
 	for(int i = 0; i < 3; ++i){
-		c_externe_[i] = c_externe[i];
+		external_c_[i] = external_c_[i];
 	}
 }
 
-void Case::set_bacterie(char type){
+void Case::set_bacteria(char type){
 	if (type == 'L'){
-		bacterie_ = new Lignee_L(0.1, 0.1);
+		bacteria_ = new Lignee_L(0.1, 0.1);
 	}
 	else {
-		bacterie_ = new Lignee_S(0.1, 0.1);
+		bacteria_ = new Lignee_S(0.1, 0.1);
 	}
 }
 
 
 //Methods
 bool Case::is_empty(){
-	if (bacterie_ == nullptr){
+	if (bacteria_ == nullptr){
 		return true;
 	}
 	return false;
 }
 
 void Case::reset(float Ainit){
-	c_externe_ = {Ainit, 0., 0.};
+	external_c_ = {Ainit, 0., 0.};
 }
 
 // Renvoie 0 s'il n'y a pas eu de mort, 1 si une cellule L est morte, 2 si une cellule S est morte
 int Case::death(){
-	char lignee;
-	if (bacterie_){
-		if (bacterie_ -> nature() == 1){
-			lignee = 'L';
+	char line;
+	if (bacteria_){
+		if (bacteria_ -> nature() == 1){
+			line = 'L';
 		}
 		else{
-			lignee = 'S';
+			line = 'S';
 		}
-		float nombre = 0;
+		float number = 0;
   	srand(time(NULL));
-  	nombre = (float)rand() / (float)RAND_MAX;
-		vector<float> organites = bacterie_ -> c_interne();
-		if (nombre < bacterie_ -> Pdeath()){
+  	number = (float)rand() / (float)RAND_MAX;
+		vector<float> metabolites = bacteria_ -> internal_c();
+		if (number < bacteria_ -> Pdeath()){
 			for (int i=0; i<3; ++i){
-				c_externe_[i] += organites[i];
+				external_c_[i] += metabolites[i];
 			}
-			delete bacterie_;
-			bacterie_ = nullptr;
+			delete bacteria_;
+			bacteria_ = nullptr;
 		}
 	}
-	if (lignee == 'L'){
+	if (line == 'L'){
 		return 1;
 	}
-	else if (lignee == 'S'){
+	else if (line == 'S'){
 		return 2;
 	}
 	return 0;

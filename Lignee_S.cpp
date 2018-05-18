@@ -19,8 +19,8 @@ double Lignee_S::Rbc(){
 }
 
 double Lignee_S::w(){
-	if (c_interne_[2] > W_min_){
-		return c_interne_[2];
+	if (internal_c_[2] > W_min_){
+		return internal_c_[2];
 	}
 	else{
 		return 0;
@@ -31,10 +31,10 @@ double Lignee_S::w(){
 
 //Methods
 
-double Lignee_S::metabolisme(double Bout){
-  float B = c_interne_[1];
-	c_interne_[1] += Bout*Rbb_ - B*Rbc_;
-	c_interne_[2] += B*Rbc_;
+double Lignee_S::metabolism(double Bout){
+  float B = internal_c_[1];
+	internal_c_[1] += Bout*Rbb_ - B*Rbc_;
+	internal_c_[2] += B*Rbc_;
 	return Bout*(1-Rbb_);
 }
 

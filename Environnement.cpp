@@ -33,11 +33,11 @@ void Environnement::fill_grid(){
 			if(countL < W_*H_/2 && countS < W_*H_/2){
 				int random = rand()%2 +1;
 				if (random==1){
-					grid_[i][j].set_bacterie('L');
+					grid_[i][j].set_bacteria('L');
 					countL++;
 				}
 				else {
-					grid_[i][j].set_bacterie('S');
+					grid_[i][j].set_bacteria('S');
 					countS++;
 				}
 				
@@ -49,7 +49,7 @@ void Environnement::fill_grid(){
 				}
 			}
 			else {
-				grid_[i][j].set_bacterie(remain);
+				grid_[i][j].set_bacteria(remain);
 				if(remain == 'L'){
 					countL++;
 				}
@@ -119,7 +119,7 @@ void Environnement::death(){
 	int case_death;
 	for (int i=0; i<H_; ++i){
 		for (int j=0; j<W_; ++j){
-			case_death = grille_[i][j].death();
+			case_death = grid_[i][j].death();
 			if (case_death == 1){
 				L_--;
 			}

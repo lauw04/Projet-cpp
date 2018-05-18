@@ -36,8 +36,8 @@ void test_bacterie(){
 	cout << "Rbc = " << b2.Rbc() << endl;
 
 	cout << "Test méthode métabolisme" << endl;
-	vector<float> organites1 = b1.c_interne();
-	vector<float> organites2 = b2.c_interne();
+	vector<float> organites1 = b1.internal_c();
+	vector<float> organites2 = b2.internal_c();
 	for(vector<float>::const_iterator it = organites1.begin(); it != organites1.end(); ++it){
 		cout << *it << endl;
 	}
@@ -45,12 +45,12 @@ void test_bacterie(){
 		cout << *it << endl;
 	}
 	cout << endl;
-	double c_ext_a = b1.metabolisme(0.5);
-	double c_ext_b = b2.metabolisme(0.2);
+	double c_ext_a = b1.metabolism(0.5);
+	double c_ext_b = b2.metabolism(0.2);
 	cout << "Nouvelle concentration externe A : " << c_ext_a << endl;
 	cout << "Nouvelle concentration externe B : " << c_ext_b << endl;
-	vector<float> organites3 = b1.c_interne();
-	vector<float> organites4 = b2.c_interne();
+	vector<float> organites3 = b1.internal_c();
+	vector<float> organites4 = b2.internal_c();
 	for(vector<float>::const_iterator it = organites3.begin(); it != organites3.end(); ++it){
 		cout << *it << endl;
 	}
@@ -64,13 +64,13 @@ void test_bacterie(){
 
   cout << "Test méthode division" << endl;
 	b1.division();
-	vector<float> organites5 = b1.c_interne();
+	vector<float> organites5 = b1.internal_c();
 	for(vector<float>::const_iterator it = organites5.begin(); it != organites5.end(); ++it){
 		cout << *it << endl;
 	}
 	
 	cout << "Test setter de concentration interne" << endl;
-	b1.set_c_interne(organites1);
+	b1.set_internal_c(organites1);
 	for(vector<float>::const_iterator it = organites1.begin(); it != organites1.end(); ++it){
 		cout << *it << endl;
 	}
@@ -88,22 +88,22 @@ void test_environnement(){
   cout << "S = " << env.S() << endl;
   cout << "T = " << env.T() << endl;
   
-  Environnement envi;
+  /*Environnement envi;
   cout << "W = " << envi.W() << endl;
   cout << "H = " << envi.H() << endl;
   cout << "Ainit = " << envi.Ainit() << endl;
   cout << "D = " << envi.D() << endl;
   cout << "L = " << envi.L() << endl;
   cout << "S = " << envi.S() << endl;
-  cout << "T = " << envi.T() << endl;
+  cout << "T = " << envi.T() << endl;*/
 }
 
 void test_case(){
 	cout << "TEST CASE" << endl;
 	cout << " >> test ctor et getters" << endl;
 	Case case1(5.);
-	vector<float> organites = case1.c_externe();
-	cout << "c_externe : " << endl;
+	vector<float> organites = case1.external_c();
+	cout << "external_c_ : " << endl;
 	for(vector<float>::const_iterator it = organites.begin(); it != organites.end(); ++it){
 		cout << *it << endl;
 	}
@@ -113,24 +113,24 @@ void test_case(){
 	
 	cout << " >> test setters" << endl;
 	organites[1] = 2. ; organites[2] = 3.;
-	case1.set_c_externe(organites);
-	vector<float> organites2 = case1.c_externe();
-	cout << "c_externe : " << endl;
+	case1.set_external_c(organites);
+	vector<float> organites2 = case1.external_c();
+	cout << "external_c : " << endl;
 	for(vector<float>::const_iterator it = organites2.begin(); it != organites2.end(); ++it){
 	cout << *it << endl;
 	}
 	
-	case1.set_bacterie('L');
-	cout << "case1.is_empty() : " << case1.is_empty() << " bacterie_ : " << case1.bacterie() << endl;
+	case1.set_bacteria('L');
+	cout << "case1.is_empty() : " << case1.is_empty() << " bacteria_ : " << case1.bacteria() << endl;
 	
 	cout << " >> Test reset" << endl;
 	case1.reset(5.);
-	organites = case1.c_externe();
+	organites = case1.external_c();
 	for(vector<float>::const_iterator it = organites.begin(); it != organites.end(); ++it){
 	cout << *it << endl;
 	}
 
 	cout << " >> Test death" << endl;
 	cout << "case1.death() : " << case1.death() << endl;
-	cout << case1.bacterie() << endl;
+	cout << case1.bacteria() << endl;
 }
