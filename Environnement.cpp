@@ -129,3 +129,5 @@ void Environnement::death(){
 		}
 	}
 }
+
+
