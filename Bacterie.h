@@ -11,6 +11,7 @@ class Bacterie{
 	Bacterie(float Pmut, float Pdeath, float W_min);
 
   //Destructors
+  virtual ~Bacterie();
 
   //Getters
 	float Pmut();

@@ -9,6 +9,7 @@ class Lignee_L : public Bacterie{
   Lignee_L(double Raa, double Rab);
 
   //Destructors
+  virtual ~Lignee_L();
 
   //Getters
   double Raa();

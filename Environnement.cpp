@@ -37,6 +37,15 @@ Environnement::Environnement (int W, int H, double Ainit, float D, int L, int S,
     
 //Destructors
 
+Environnement::~Environnement(){
+	for(int i =0; i<H_; ++i){
+		if (grid_[i]!=nullptr){
+			delete[] grid_[i];
+		}
+	}
+	delete[] grid_;
+}
+
 //Setters
 void Environnement::fill_grid(){
 	int countL = 0;
@@ -108,17 +117,6 @@ int Environnement::S(){
 
 float Environnement::T(){
   return T_;
-}
-
-//destructor
-
-Environnement::~Environnement(){
-  for(int i =0; i<H_; ++i){
-    if (grid_[i]!=nullptr){
-      delete[] grid_[i];
-      }
-    }
-  delete[] grid_;
 }
 
 //Methods
