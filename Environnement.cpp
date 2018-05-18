@@ -8,7 +8,7 @@
 Environnement::Environnement (int W, int H, double Ainit, float D, int L, int S, float T){
   W_ = W; 
   H_ = H;
-  Ainit_ = Ainit; 
+  Ainit_ = Ainit;
   D_= D; 
   L_= L; 
   S_ = S; 
