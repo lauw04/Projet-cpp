@@ -8,6 +8,7 @@ Lignee_L::Lignee_L(double Raa, double Rab){
 }
 
 //Destructors
+Lignee_L::~Lignee_L() = default;
 
 //Getters
 double Lignee_L::Raa(){
