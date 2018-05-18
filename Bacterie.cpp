@@ -16,6 +16,7 @@ Bacterie::Bacterie(){
 }
 
 //Destructors
+Bacterie::~Bacterie() = default;
 
 //Getters
 float Bacterie::Pmut(){

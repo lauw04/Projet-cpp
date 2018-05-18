@@ -8,6 +8,7 @@ Lignee_S::Lignee_S(double Rbb, double Rbc){
 }
 
 //Destructors
+Lignee_S::~Lignee_S() = default;
 
 //Getters
 double Lignee_S::Rbb(){
