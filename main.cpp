@@ -79,7 +79,7 @@ void test_bacterie(){
 void test_environnement(){
 	cout << "TEST ENVIRONNEMENT" << endl;
 
-  Environnement env(4, 4, 0.5, 0.3, 8, 7, 0.5);
+  Environnement env(4, 4, 0.5, 0.3, 8, 7, 0.5, 5000);
   cout << "W = " << env.W() << endl;
   cout << "H = " << env.H() << endl;
   cout << "Ainit = " << env.Ainit() << endl;
