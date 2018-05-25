@@ -5,7 +5,7 @@
 #include "Case.h"
 
 //Constructors
-Environnement::Environnement (int W, int H, double Ainit, float D, int L, int S, float T){
+Environnement::Environnement (int W, int H, double Ainit, float D, int L, int S, float T, float Pmut){
   W_ = W; 
   H_ = H;
   Ainit_ = Ainit; 
@@ -13,6 +13,7 @@ Environnement::Environnement (int W, int H, double Ainit, float D, int L, int S,
   L_= L; 
   S_ = S; 
   T_ = T;
+  Pmut_ = Pmut;
 	grid_ = new Case* [W_];
 	for(int i=0; i<W_; ++i){
 		grid_[i] = new Case[H_];
@@ -95,6 +96,10 @@ float Environnement::T(){
   return T_;
 }
 
+float Environnement::Pmut(){
+  return Pmut_;
+}
+
 //destructor
 
 Environnement::~Environnement(){
@@ -130,4 +135,95 @@ void Environnement::death(){
 	}
 }
 
-
+void Environnement::competition(){
+  for (int i=0; i<H_;++i){
+    for (int j=0; j<W_; j++){
+      if(grid_[i][j].is_empty()== true){ //look for empty case
+        int max_fitness=0;
+        int v_max =0;
+        int h_max=0;
+        //browser neighbourhood
+        for (int k=-1; k<2;k++){
+          for (int l=-1; l<2; l++){
+            if(k!=0 && l!=0){
+              int v=0;
+              int h=0;
+              //edge conditions
+              if (i+k>H_-1){
+                v=0;
+              }
+              else if (i+k<0){
+                v=H_-1;
+              }
+              else{
+                v= i+k;
+              }
+              if (j+l>W_-1){
+                h=0;
+              }
+              else if (j+l<0){
+                h=W_-1;
+              }
+              else{
+                h=j+1;
+              }
+              //test if the neighbourhood case contains a cell
+              if( grid_[h][v].is_empty() == false){ //the neighbourhood case contains a cell
+              //looks for the neighbouring cell with highest fitness
+                if((grid_[h][v].bacteria())->w()>max_fitness){
+                  max_fitness = (grid_[h][v].bacteria())->w();
+                  h_max= h;
+                  v_max= v;
+                }
+              }
+            }
+          }
+        }
+        if(max_fitness>0){
+          float number;
+          //the dividing cell will mutate
+          number = (float)rand() / (float)RAND_MAX;
+          //fill the case with adequate cell (mutating...)
+          char c;
+          if((grid_[h_max][v_max].bacteria())->nature() == 1){ //if case contains L
+            if(number >= Pmut_){
+              c='l';
+            }
+            else{
+              c='s';
+            }
+          }
+          else{ //if case contains S
+            if(number >= Pmut_){
+              c='s';
+            }
+            else{
+              c='l';
+            }
+          }
+          vector <float> metabolites = (grid_[h_max][v_max].bacteria())->division();
+          if(number >= Pmut_){
+            delete grid_[h_max][v_max].bacteria();
+            grid_[h_max][v_max].set_bacteria(c);
+            (grid_[h_max][v_max].bacteria())->set_internal_c(metabolites);
+          }
+       
+          grid_[i][j].set_bacteria(c);
+          (grid_[i][j].bacteria())->set_internal_c(metabolites);
+          if (c=='l'){
+            L_++;
+          }
+          else{
+            S_++;
+          }
+        }
+      }
+    }
+  }
+}
+       
+        
+      
+                
+                
+       

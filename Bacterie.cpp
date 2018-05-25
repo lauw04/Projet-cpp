@@ -3,31 +3,22 @@
 #include "Bacterie.h"
 
 //Constructors
-Bacterie::Bacterie(float Pmut, float Pdeath, float W_min){
-  Pmut_ = Pmut;
-  Pdeath_ = Pdeath;
-  W_min_ = W_min;
-}
 
 Bacterie::Bacterie(){
-	Pmut_ = 0.0;
-	Pdeath_ = 0.02;
+  Pdeath_ = 0.02;
 	W_min_ = 0.001;
 }
 
 //Destructors
 
 //Getters
-float Bacterie::Pmut(){
-  return Pmut_;
+
+float Bacterie::W_min(){
+  return W_min_;
 }
 
 float Bacterie::Pdeath(){
   return Pdeath_;
-}
-
-float Bacterie::W_min(){
-  return W_min_;
 }
 
 vector<float> Bacterie::internal_c(){
