@@ -79,7 +79,7 @@ void test_bacterie(){
 void test_environnement(){
 	cout << "TEST ENVIRONNEMENT" << endl;
 
-  Environnement env(4, 4, 0.5, 0.3, 8, 7, 0.5, 5000);
+  Environnement env(4, 4, 0.5, 0.3, 8, 7, 0.5, 5000,0.0);
   cout << "W = " << env.W() << endl;
   cout << "H = " << env.H() << endl;
   cout << "Ainit = " << env.Ainit() << endl;
@@ -87,6 +87,7 @@ void test_environnement(){
   cout << "L = " << env.L() << endl;
   cout << "S = " << env.S() << endl;
   cout << "T = " << env.T() << endl;
+  cout << "Pmut = " << env.Pmut() << endl;
   
   Environnement envi;
   cout << "W = " << envi.W() << endl;
@@ -96,8 +97,8 @@ void test_environnement(){
   cout << "L = " << envi.L() << endl;
   cout << "S = " << envi.S() << endl;
   cout << "T = " << envi.T() << endl;
-  
-  env.run();
+cout << "Pmut = " << envi.Pmut() << endl;
+	env.run();
 }
 
 void test_case(){
