@@ -21,7 +21,7 @@ Environnement::Environnement(){
 	t_simul_ = 5000;
 }
 
-Environnement::Environnement (int W, int H, double Ainit, float D, int L, int S, float T, int t_simul){
+Environnement::Environnement (int W, int H, double Ainit, float D, int L, int S, int T, int t_simul){
   W_ = W; 
   H_ = H;
   Ainit_ = Ainit; 
@@ -117,7 +117,7 @@ int Environnement::S(){
   return S_;
 }
 
-float Environnement::T(){
+int Environnement::T(){
   return T_;
 }
 
@@ -145,7 +145,67 @@ void Environnement::death(){
 	}
 }
 
-void Environnement::run(){
+void Environnement::diffusion(){
+	Case** grid_copy;
+	grid_copy = new Case* [W_];
+	for(int i=0; i<W_; ++i){
+		grid_copy[i] = new Case[H_];
+	}
+	for (int i=0; i<H_; ++i){
+		for (int j=0; j<W_; ++j){
+			vector<float> old_external_c = grid_copy[i][j].external_c();
+			vector<float> new_external_c = grid_copy[i][j].external_c();
+			for (int k=-1; k<2; ++k){
+				for (int l=-1; l<2; ++l){
+					int y = 0; //horizontal
+					int x = 0; //vertical
+					if (i+k > H_-1){
+						x = 0;
+					}
+					else if (i+k < 0){
+						x = H_-1;
+					}
+					else{
+						x = i+k;
+					}
+					if (j+l > W_-1){
+						y = 0;
+					}
+					else if (j+l < 0){
+						y = W_-1;
+					}
+					else{
+						y = j+l;
+					}
+					if (k != 0 && l != 0){
+						for (int m=0; m<3; ++m){
+							new_external_c[m] = new_external_c[m] + D_*(grid_copy[x][y].external_c()[m]);
+						}
+					}
+				}
+			}
+			for (int m=0; m<3; ++m){
+				new_external_c[m] = new_external_c[m] - 9*D_*old_external_c[m];
+			}
+			grid_[i][j].set_external_c(new_external_c);
+		}
+	}
+	for (int i=0; i<H_; ++i){
+		delete[] grid_copy[i];
+	}
+	delete[] grid_copy; 					
+}
+
+
+void Environnement::metabolism(){
+	for (int i=0; i<H_; ++i){
+		for (int j=0; j<W_; ++i){
+			grid_[i][j].metabolism();
+		}
+	}
+}
+
+int Environnement::run(){
 	for (int t=0; t<t_simul_; ++t){
 		if (t%(T_) == 0){
 			reset();

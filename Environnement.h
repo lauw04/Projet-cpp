@@ -9,8 +9,8 @@ class Environnement {
 	
 	public :
 	//Constructors
-  //explicit Environnement(); //Ctor par défaut utilisé pour l'exemple du projet
-  Environnement(int W, int H, double Ainit, float D, int L, int S, float T, int t_simul);
+  explicit Environnement(); //Ctor par défaut utilisé pour l'exemple du projet
+  Environnement(int W, int H, double Ainit, float D, int L, int S, int T, int t_simul);
   //Destructors
   ~Environnement();
   //Setters
@@ -23,7 +23,7 @@ class Environnement {
   float D();
   int L();
   int S();
-  float T();
+  int T();
 
   //Methods
   void fill_grid(); //remplit de manière aléatoire la grille avec des cellule L et S.  
@@ -31,7 +31,7 @@ class Environnement {
 	void death();
 	void diffusion();
 	void metabolism();
-	void run();
+	int run();
     
   protected :
 	//Attributs
@@ -42,7 +42,7 @@ class Environnement {
 	float D_; //Taux de diffusion
 	int L_; //Nombre bactéries issues de la souche L
 	int S_; //Nombre bactéries issues de la souche S
-	float T_; //Pas de temps où les concentrations sont mises à zéro
+	int T_; //Pas de temps où les concentrations sont mises à zéro
 	int t_simul_;
 		
 };
