@@ -9,8 +9,8 @@ class Environnement {
 	
 	public :
 	//Constructors
-  //explicit Environnement(); //Ctor par défaut utilisé pour l'exemple du projet
-  Environnement(int W, int H, double Ainit, float D, int L, int S, float T, float Pmut);
+  explicit Environnement(); //Ctor par défaut utilisé pour l'exemple du projet
+  Environnement(int W, int H, double Ainit, float D, int L, int S, int T, int t_simul, float Pmut);
   //Destructors
   ~Environnement();
   //Setters
@@ -23,7 +23,7 @@ class Environnement {
   float D();
   int L();
   int S();
-  float T();
+  int T();
   float Pmut();
 
   //Methods
@@ -32,6 +32,8 @@ class Environnement {
 	void death();
 	void diffusion();
 	void competition();
+	void metabolism();
+	int run();
     
   protected :
 	//Attributs
@@ -42,8 +44,9 @@ class Environnement {
 	float D_; //Taux de diffusion
 	int L_; //Nombre bactéries issues de la souche L
 	int S_; //Nombre bactéries issues de la souche S
-	float T_; //Pas de temps où les concentrations sont mises à zéro
-	float Pmut_;//proba de mutation
+	int T_; //Pas de temps où les concentrations sont mises à zéro
+	int t_simul_;	
+	float Pmut_;	
 };
 
 #endif

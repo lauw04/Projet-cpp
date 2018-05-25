@@ -89,14 +89,15 @@ void test_environnement(){
   cout << "T = " << env.T() << endl;
   cout << "Pmut = " << env.Pmut() << endl;
   
-  /*Environnement envi;
+  Environnement envi;
   cout << "W = " << envi.W() << endl;
   cout << "H = " << envi.H() << endl;
   cout << "Ainit = " << envi.Ainit() << endl;
   cout << "D = " << envi.D() << endl;
   cout << "L = " << envi.L() << endl;
   cout << "S = " << envi.S() << endl;
-  cout << "T = " << envi.T() << endl;*/
+  cout << "T = " << envi.T() << endl;
+cout << "Pmut = " << envi.Pmut() << endl;
 }
 
 void test_case(){

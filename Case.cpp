@@ -89,3 +89,14 @@ int Case::death(){
 	}
 	return 0;
 }
+
+void Case::metabolism(){
+	if (bacteria_){
+		if(bacteria_ -> nature() == 1){
+			external_c_[0] = bacteria_ -> metabolism(external_c_[0]);
+		}
+		else{
+			external_c_[1] = bacteria_ -> metabolism(external_c_[1]);
+		}
+	}
+}

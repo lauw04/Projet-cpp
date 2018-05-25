@@ -10,6 +10,7 @@ class Bacterie{
   Bacterie();
 
   //Destructors
+  virtual ~Bacterie();
 
   //Getters
 	float W_min();

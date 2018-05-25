@@ -10,6 +10,7 @@ Bacterie::Bacterie(){
 }
 
 //Destructors
+Bacterie::~Bacterie() = default;
 
 //Getters
 
