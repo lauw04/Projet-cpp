@@ -199,7 +199,7 @@ void Environnement::diffusion(){
 
 void Environnement::metabolism(){
 	for (int i=0; i<H_; ++i){
-		for (int j=0; j<W_; ++i){
+		for (int j=0; j<W_; ++j){
 			grid_[i][j].metabolism();
 		}
 	}
@@ -213,14 +213,17 @@ int Environnement::run(){
 		diffusion();
 		death();
 		//competition();
-		if (L_ == 0 && S_ == 0){
-			return 0; //Extinction
+		for(int i=0; i<10; ++i){
+				metabolism();
 		}
-		else if (L_ != 0 && S_ != 0){
-			return 1; //Cohabitation
-		}
-		else if (L_ != 0 && S_ == 0){
-			return 2; //Exclusion
-		}			
 	}
+	if (L_ == 0 && S_ == 0){
+		return 0; //Extinction
+	}
+	else if (L_ != 0 && S_ != 0){
+		return 1; //Cohabitation
+	}
+	else if (L_ != 0 && S_ == 0){
+		return 2; //Exclusion
+	}			
 }

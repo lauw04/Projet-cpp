@@ -88,7 +88,7 @@ void test_environnement(){
   cout << "S = " << env.S() << endl;
   cout << "T = " << env.T() << endl;
   
-  Environnement envi = Environnement();
+  Environnement envi;
   cout << "W = " << envi.W() << endl;
   cout << "H = " << envi.H() << endl;
   cout << "Ainit = " << envi.Ainit() << endl;
@@ -96,6 +96,8 @@ void test_environnement(){
   cout << "L = " << envi.L() << endl;
   cout << "S = " << envi.S() << endl;
   cout << "T = " << envi.T() << endl;
+  
+  env.run();
 }
 
 void test_case(){
