@@ -9,7 +9,6 @@ class Case{
   public:
   //Constructors
   Case();
-  Case(float Ainit);
   
   //Destructors*
   ~Case();

@@ -22,10 +22,10 @@ Environnement::Environnement(){
 	t_simul_ = 5000;
 }
 
-Environnement::Environnement (int W, int H, double Ainit, float D, int L, int S, int T, int t_simul, float Pmut){
+Environnement::Environnement (int W, int H, float D, int L, int S, int T, int t_simul, float Pmut){
   W_ = W; 
   H_ = H;
-  Ainit_ = Ainit; 
+  Ainit_ = 23; 
   D_= D; 
   L_= L; 
   S_ = S; 
@@ -291,7 +291,7 @@ void Environnement::competition(){
 
 void Environnement::metabolism(){
 	for (int i=0; i<H_; ++i){
-		for (int j=0; j<W_; ++i){
+		for (int j=0; j<W_; ++j){
 			grid_[i][j].metabolism();
 		}
 	}
@@ -303,16 +303,19 @@ int Environnement::run(){
 			reset();
 		}
 		diffusion();
-		death();
+		//death();
 		//competition();
-		if (L_ == 0 && S_ == 0){
-			return 0; //Extinction
-		}
-		else if (L_ != 0 && S_ != 0){
-			return 1; //Cohabitation
-		}
-		else if (L_ != 0 && S_ == 0){
-			return 2; //Exclusion
-		}			
+	  /*for(int i=0; i<10; ++i){
+			metabolism();
+		}*/
 	}
+	if (L_ == 0 && S_ == 0){
+		return 0; //Extinction
+	}
+	else if (L_ != 0 && S_ != 0){
+		return 1; //Cohabitation
+	}
+	else if (L_ != 0 && S_ == 0){
+		return 2; //Exclusion
+	}			
 }
