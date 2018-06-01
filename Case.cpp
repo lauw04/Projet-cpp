@@ -61,7 +61,7 @@ void Case::reset(float Ainit){
 int Case::death(){
 	char line;
 	if (bacteria_){
-		if ((*bacteria_).nature() == 1){
+		if (bacteria_ -> nature() == 1){
 			line = 'L';
 		}
 		else{
@@ -69,7 +69,6 @@ int Case::death(){
 		}
 		float number = 0;
   	number = (float)rand() / (float)RAND_MAX;
-  	cout << number << endl;
 		vector<float> metabolites = bacteria_ -> internal_c();
 		if (number < bacteria_ -> Pdeath()){
 			for (int i=0; i<3; ++i){
@@ -77,12 +76,11 @@ int Case::death(){
 			}
 			delete bacteria_;
 			bacteria_ = nullptr;
-			
-			if (line == 'L'){
-			return 1;
+    	if (line == 'L'){
+	      return 1;
 			}
 			else if (line == 'S'){
-			return 2;
+				return 2;
 			}
 		}
 	}	
@@ -91,6 +89,7 @@ int Case::death(){
 
 void Case::metabolism(){
 	if (bacteria_){
+	  cout << bacteria_ -> nature() << endl;
 		if(bacteria_ -> nature() == 1){
 			external_c_[0] = bacteria_ -> metabolism(external_c_[0]);
 		}

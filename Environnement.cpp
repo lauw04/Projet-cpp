@@ -234,7 +234,7 @@ void Environnement::competition(){
                 h=j+1;
               }
               //test if the neighbourhood case contains a cell
-              if( grid_[h][v].is_empty() == false){ //the neighbourhood case contains a cell
+              if(grid_[h][v].is_empty() == false){ //the neighbourhood case contains a cell
               //looks for the neighbouring cell with highest fitness
                 if((grid_[h][v].bacteria())->w()>max_fitness){
                   max_fitness = (grid_[h][v].bacteria())->w();
@@ -301,9 +301,9 @@ int Environnement::run(){
 		if (t%(T_) == 0){
 			reset();
 		}
-		//diffusion();
+		diffusion();
 		//death();
-		competition();
+		//competition();
 	  /*for(int i=0; i<10; ++i){
 			metabolism();
 		}*/
