@@ -5,11 +5,7 @@
 //Constructors
 
 Bacterie::Bacterie(){
-<<<<<<< HEAD
   Pdeath_ = 0.5;
-=======
-  Pdeath_ = 0.2;
->>>>>>> 673b2f4684bbed09b6bd782952c74673a8168dd2
 	W_min_ = 0.001;
 }
 

@@ -69,6 +69,7 @@ int Case::death(){
 		}
 		float number = 0;
   	number = (float)rand() / (float)RAND_MAX;
+		cout << "number : " << number << endl;
 		vector<float> metabolites = bacteria_ -> internal_c();
 		if (number < bacteria_ -> Pdeath()){
 			for (int i=0; i<3; ++i){
