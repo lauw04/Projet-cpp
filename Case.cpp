@@ -29,9 +29,9 @@ Bacterie* Case::bacteria(){
 }
 
 //Setters
-void Case::set_external_c(vector<float> c_externe){
+void Case::set_external_c(vector<float> external_c){
 	for(int i = 0; i < 3; ++i){
-		external_c_[i] = external_c_[i];
+		external_c_[i] = external_c[i];
 	}
 }
 
@@ -61,15 +61,15 @@ void Case::reset(float Ainit){
 int Case::death(){
 	char line;
 	if (bacteria_){
-		if (bacteria_ -> nature() == 1){
+		if ((*bacteria_).nature() == 1){
 			line = 'L';
 		}
 		else{
 			line = 'S';
 		}
 		float number = 0;
-  	srand(time(NULL));
   	number = (float)rand() / (float)RAND_MAX;
+  	cout << number << endl;
 		vector<float> metabolites = bacteria_ -> internal_c();
 		if (number < bacteria_ -> Pdeath()){
 			for (int i=0; i<3; ++i){
@@ -77,20 +77,20 @@ int Case::death(){
 			}
 			delete bacteria_;
 			bacteria_ = nullptr;
+			
+			if (line == 'L'){
+			return 1;
+			}
+			else if (line == 'S'){
+			return 2;
+			}
 		}
-	}
-	if (line == 'L'){
-		return 1;
-	}
-	else if (line == 'S'){
-		return 2;
-	}
+	}	
 	return 0;
 }
 
 void Case::metabolism(){
 	if (bacteria_){
-	  cout << bacteria_ -> nature() << endl;
 		if(bacteria_ -> nature() == 1){
 			external_c_[0] = bacteria_ -> metabolism(external_c_[0]);
 		}
