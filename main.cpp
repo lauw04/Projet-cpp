@@ -79,7 +79,8 @@ void test_bacterie(){
 void test_environnement(){
 	cout << "TEST ENVIRONNEMENT" << endl;
 
-  Environnement env(4, 4, 0.5, 0.3, 8, 7, 0.5, 5000,0.0);
+	cout << " >> test ctor et getters" << endl;
+  Environnement env(2, 2, 0.3, 8, 7, 5, 5000, 0.0);
   cout << "W = " << env.W() << endl;
   cout << "H = " << env.H() << endl;
   cout << "Ainit = " << env.Ainit() << endl;
@@ -98,13 +99,66 @@ void test_environnement(){
   cout << "S = " << envi.S() << endl;
   cout << "T = " << envi.T() << endl;
   cout << "Pmut = " << envi.Pmut() << endl;
-	envi.run();
+	
+	cout << " >> test diffusion" << endl;
+	vector<float> conc = ((envi.grid())[0][0]).external_c();
+  cout << "premiere case" << endl;
+	for(vector<float>::const_iterator it = conc.begin(); it != conc.end(); ++it){
+	cout << *it << endl;
+	}
+	((env.grid())[0][0]).metabolism();
+	
+	vector<float> conc2 = ((envi.grid())[0][1]).external_c();
+  cout << "deux case" << endl;
+	for(vector<float>::const_iterator it = conc2.begin(); it != conc2.end(); ++it){
+	cout << *it << endl;
+	}
+	((env.grid())[0][1]).metabolism();
+	
+	vector<float> conc3 = ((envi.grid())[1][0]).external_c();
+  cout << "trois case" << endl;
+	for(vector<float>::const_iterator it = conc3.begin(); it != conc3.end(); ++it){
+	cout << *it << endl;
+	}
+	((env.grid())[1][0]).metabolism();
+	
+	vector<float> conc4 = ((envi.grid())[1][1]).external_c();
+  cout << "quatre case" << endl;
+	for(vector<float>::const_iterator it = conc4.begin(); it != conc4.end(); ++it){
+	cout << *it << endl;
+	}
+	((env.grid())[1][1]).metabolism();
+  
+	conc = ((env.grid())[0][0]).external_c();
+  cout << "premiere case" << (((envi.grid())[0][0]).bacteria())->nature() << endl;
+	for(vector<float>::const_iterator it = conc.begin(); it != conc.end(); ++it){
+	cout << *it << endl;
+	}
+
+	conc2 = ((envi.grid())[0][1]).external_c();
+  cout << "deux case " << (((envi.grid())[0][1]).bacteria())->nature() << endl;
+	for(vector<float>::const_iterator it = conc2.begin(); it != conc2.end(); ++it){
+	cout << *it << endl;
+	}
+	
+	conc3 = ((envi.grid())[1][0]).external_c();
+  cout << "trois case" << (((envi.grid())[1][0]).bacteria())->nature() << endl;
+	for(vector<float>::const_iterator it = conc3.begin(); it != conc3.end(); ++it){
+	cout << *it << endl;
+	}
+	
+	conc4 = ((envi.grid())[1][1]).external_c();
+  cout << "quatre case" << (((envi.grid())[1][1]).bacteria())->nature() << endl;
+	for(vector<float>::const_iterator it = conc4.begin(); it != conc4.end(); ++it){
+	cout << *it << endl;
+	}
+
 }
 
 void test_case(){
 	cout << "TEST CASE" << endl;
 	cout << " >> test ctor et getters" << endl;
-	Case case1(5.);
+	Case case1;
 	vector<float> organites = case1.external_c();
 	cout << "external_c_ : " << endl;
 	for(vector<float>::const_iterator it = organites.begin(); it != organites.end(); ++it){

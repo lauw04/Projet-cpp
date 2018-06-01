@@ -10,7 +10,7 @@ class Environnement {
 	public :
 	//Constructors
   explicit Environnement(); //Ctor par défaut utilisé pour l'exemple du projet
-  Environnement(int W, int H, double Ainit, float D, int L, int S, int T, int t_simul, float Pmut);
+  Environnement(int W, int H, float D, int L, int S, int T, int t_simul, float Pmut);
   //Destructors
   ~Environnement();
   //Setters

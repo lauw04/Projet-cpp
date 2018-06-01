@@ -22,10 +22,10 @@ Environnement::Environnement(){
 	t_simul_ = 5000;
 }
 
-Environnement::Environnement (int W, int H, double Ainit, float D, int L, int S, int T, int t_simul, float Pmut){
+Environnement::Environnement (int W, int H, float D, int L, int S, int T, int t_simul, float Pmut){
   W_ = W; 
   H_ = H;
-  Ainit_ = Ainit; 
+  Ainit_ = 23; 
   D_= D; 
   L_= L; 
   S_ = S; 
@@ -304,7 +304,7 @@ int Environnement::run(){
 		}
 		diffusion();
 		death();
-		competition();
+		//competition();
 		for(int i=0; i<10; ++i){
 				metabolism();
 		}

@@ -7,16 +7,14 @@
 using namespace std;
 
 //Constructors
-Case::Case() = default;
-
-Case::Case(float Ainit){
-	external_c_[0] = Ainit;
+Case::Case(){
+	external_c_[0] = 23;
 	bacteria_ = nullptr;
 }
 
 //Destructors
 Case::~Case(){
-	if(bacteria_ != nullptr){
+	if(bacteria_ != nullptr){ 
 		delete bacteria_;
 	}
 }
@@ -92,6 +90,7 @@ int Case::death(){
 
 void Case::metabolism(){
 	if (bacteria_){
+	  cout << bacteria_ -> nature() << endl;
 		if(bacteria_ -> nature() == 1){
 			external_c_[0] = bacteria_ -> metabolism(external_c_[0]);
 		}
