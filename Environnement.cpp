@@ -55,7 +55,6 @@ void Environnement::fill_grid(){
 	int countL = 0;
 	int countS = 0;
 	char remain;
-	srand(time(NULL));
 	for(int i=0; i<W_; ++i){
 		for(int j=0; j<H_; ++j){
 			if(countL < W_*H_/2 && countS < W_*H_/2){
@@ -235,7 +234,7 @@ void Environnement::competition(){
                 h=j+1;
               }
               //test if the neighbourhood case contains a cell
-              if( grid_[h][v].is_empty() == false){ //the neighbourhood case contains a cell
+              if(grid_[h][v].is_empty() == false){ //the neighbourhood case contains a cell
               //looks for the neighbouring cell with highest fitness
                 if((grid_[h][v].bacteria())->w()>max_fitness){
                   max_fitness = (grid_[h][v].bacteria())->w();
@@ -302,12 +301,12 @@ int Environnement::run(){
 		if (t%(T_) == 0){
 			reset();
 		}
-		diffusion();
+		//diffusion();
 		death();
-		//competition();
+		/*competition();
 		for(int i=0; i<10; ++i){
 				metabolism();
-		}
+		}*/
 	}
 	if (L_ == 0 && S_ == 0){
 		return 0; //Extinction
