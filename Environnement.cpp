@@ -304,7 +304,7 @@ int Environnement::run(){
 		}
 		diffusion();
 		death();
-		//competition();
+		competition();
 		for(int i=0; i<10; ++i){
 				metabolism();
 		}

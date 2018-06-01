@@ -97,8 +97,8 @@ void test_environnement(){
   cout << "L = " << envi.L() << endl;
   cout << "S = " << envi.S() << endl;
   cout << "T = " << envi.T() << endl;
-cout << "Pmut = " << envi.Pmut() << endl;
-	env.run();
+  cout << "Pmut = " << envi.Pmut() << endl;
+	envi.run();
 }
 
 void test_case(){
