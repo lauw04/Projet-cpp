@@ -55,7 +55,6 @@ void Environnement::fill_grid(){
 	int countL = 0;
 	int countS = 0;
 	char remain;
-	srand(time(NULL));
 	for(int i=0; i<W_; ++i){
 		for(int j=0; j<H_; ++j){
 			if(countL < W_*H_/2 && countS < W_*H_/2){
@@ -203,42 +202,52 @@ void Environnement::diffusion(){
 }
 
 void Environnement::competition(){
-  for (int i=0; i<H_;++i){
-    for (int j=0; j<W_; j++){
+  for (int i=0; i<H_;++i){ //hauteur
+    for (int j=0; j<W_; j++){ //largeur
       if(grid_[i][j].is_empty()== true){ //look for empty case
+      	cout << "coucou " << i << " " << j << endl;
         int max_fitness=0;
-        int v_max =0;
-        int h_max=0;
+        int v_max;
+        int h_max;
         //browser neighbourhood
-        for (int k=-1; k<2;k++){
-          for (int l=-1; l<2; l++){
-            if(k!=0 && l!=0){
-              int v=0;
-              int h=0;
+        for (int l=-1; l<2;l++){ //hauteur
+          for (int k=-1; k<2; k++){ //largeur
+          	cout << "coucou bis" << endl;
+            if(!(k==0 && l==0)){
+            cout << "coucou ter" << endl;
+              int v;
+              int h;
               //edge conditions
-              if (i+k>H_-1){
-                v=0;
-              }
-              else if (i+k<0){
-                v=H_-1;
-              }
-              else{
-                v= i+k;
-              }
-              if (j+l>W_-1){
+              if (i+l>H_-1){
                 h=0;
               }
-              else if (j+l<0){
-                h=W_-1;
+              else if (i+l<0){
+                h=H_-1;
               }
               else{
-                h=j+1;
+                h=i+l;
               }
+
+              if (j+k>W_-1){
+                v=0;
+              }
+              else if (j+k<0){
+                v=W_-1;
+              }
+              else{
+                v= j+k;
+              }
+              
+
+              cout << h << " " << v << endl;
               //test if the neighbourhood case contains a cell
-              if( grid_[h][v].is_empty() == false){ //the neighbourhood case contains a cell
+              if(grid_[h][v].is_empty() == false){
+              	cout << "coucou 4" << endl;//the neighbourhood case contains a cell
               //looks for the neighbouring cell with highest fitness
-                if((grid_[h][v].bacteria())->w()>max_fitness){
+              	cout << "fitness " << (grid_[h][v].bacteria())->w() << endl;
+                if((grid_[h][v].bacteria())->w() > max_fitness){
                   max_fitness = (grid_[h][v].bacteria())->w();
+                  //cout  << "fitness max" << max_fitness << endl;
                   h_max= h;
                   v_max= v;
                 }
@@ -246,29 +255,40 @@ void Environnement::competition(){
             }
           }
         }
-        if(max_fitness>0){
-          float number;
-          //the dividing cell will mutate
-          number = (float)rand() / (float)RAND_MAX;
+        //cout << (grid_[h_max][v_max].bacteria())->nature() << endl;
+        //cout << h_max << " " << v_max << endl;
+        if(max_fitness>0){ //the dividing cell will mutate
+        	cout << h_max << " " << v_max << endl;
+          float number = (float)rand() / (float)RAND_MAX;
           //fill the case with adequate cell (mutating...)
           char c;
           if((grid_[h_max][v_max].bacteria())->nature() == 1){ //if case contains L
             if(number >= Pmut_){
-              c='l';
+              c='L';
             }
             else{
-              c='s';
+              c='S';
+              L_--;
+              S_++;
             }
           }
           else{ //if case contains S
             if(number >= Pmut_){
-              c='s';
+              c='S';
             }
             else{
-              c='l';
+              c='L';
+              S_--;
+              L_++;
             }
           }
+          cout << c << endl;
           vector <float> metabolites = (grid_[h_max][v_max].bacteria())->division();
+          cout << endl;
+          cout << "METABOLITES" << endl;
+          for(vector<float>::const_iterator it = metabolites.begin(); it != metabolites.end(); ++it){
+			cout << *it << endl;
+			}
           if(number >= Pmut_){
             delete grid_[h_max][v_max].bacteria();
             grid_[h_max][v_max].set_bacteria(c);
@@ -277,7 +297,7 @@ void Environnement::competition(){
        
           grid_[i][j].set_bacteria(c);
           (grid_[i][j].bacteria())->set_internal_c(metabolites);
-          if (c=='l'){
+          if (c=='L'){
             L_++;
           }
           else{
@@ -303,11 +323,11 @@ int Environnement::run(){
 			reset();
 		}
 		diffusion();
-		death();
+		//death();
 		//competition();
-		for(int i=0; i<10; ++i){
-				metabolism();
-		}
+	  /*for(int i=0; i<10; ++i){
+			metabolism();
+		}*/
 	}
 	if (L_ == 0 && S_ == 0){
 		return 0; //Extinction
@@ -317,5 +337,8 @@ int Environnement::run(){
 	}
 	else if (L_ != 0 && S_ == 0){
 		return 2; //Exclusion
+	}
+	else {
+		return 2; //Exclusion l = 0 et s != O
 	}			
 }

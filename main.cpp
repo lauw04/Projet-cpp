@@ -14,10 +14,11 @@ void test_environnement();
 void test_case();
 
 int main(){
+  srand(time(NULL));
   cout << "Hello world !" << endl;
-  test_bacterie();
+  //test_bacterie();
 	cout << endl;
-  test_case();
+  //test_case();
 	cout << endl;
 	test_environnement();
   return 0;
@@ -79,26 +80,55 @@ void test_bacterie(){
 void test_environnement(){
 	cout << "TEST ENVIRONNEMENT" << endl;
 
-  Environnement env(4, 4, 0.3, 8, 7, 50, 5000,0.0);
-  cout << "W = " << env.W() << endl;
-  cout << "H = " << env.H() << endl;
-  cout << "Ainit = " << env.Ainit() << endl;
-  cout << "D = " << env.D() << endl;
-  cout << "L = " << env.L() << endl;
-  cout << "S = " << env.S() << endl;
-  cout << "T = " << env.T() << endl;
-  cout << "Pmut = " << env.Pmut() << endl;
-  
-  Environnement envi;
-  cout << "W = " << envi.W() << endl;
-  cout << "H = " << envi.H() << endl;
-  cout << "Ainit = " << envi.Ainit() << endl;
-  cout << "D = " << envi.D() << endl;
-  cout << "L = " << envi.L() << endl;
-  cout << "S = " << envi.S() << endl;
-  cout << "T = " << envi.T() << endl;
-cout << "Pmut = " << envi.Pmut() << endl;
-	env.run();
+	cout << " >> test ctor et getters" << endl;
+  	Environnement env(2, 2, 0.3, 2, 2, 5, 5000, 0.0);
+	/*cout << "W = " << env.W() << endl;
+	cout << "H = " << env.H() << endl;
+	cout << "Ainit = " << env.Ainit() << endl;
+	cout << "D = " << env.D() << endl;
+	cout << "L = " << env.L() << endl;
+	cout << "S = " << env.S() << endl;
+	cout << "T = " << env.T() << endl;
+	cout << "Pmut = " << env.Pmut() << endl;*/
+
+	cout << " >> test competition" << endl;
+
+	cout << endl;
+	cout << "TOTAL" << endl;
+	cout << "L " << env.L() << endl;
+	cout << "S " << env.S() << endl;
+
+	cout << "premiere case" << (((env.grid())[0][0]).bacteria())->nature() << endl;
+
+	cout << "deux case" << (((env.grid())[0][1]).bacteria())->nature() << endl;
+
+	cout << "trois case" << (((env.grid())[1][0]).bacteria())->nature() << endl;
+
+	cout << "quatre case" << (((env.grid())[1][1]).bacteria())->nature() << endl;
+
+  	env.death();
+ 	env.competition();
+
+ 	cout << "premiere case" << ((env.grid())[0][0]).is_empty() << endl;
+	//cout << (((env.grid())[0][0]).bacteria())->w() << endl;
+
+
+ 	cout << "deux case " << ((env.grid())[0][1]).is_empty() << endl;
+	//cout << (((env.grid())[0][1]).bacteria())->w() << endl;
+	
+
+ 	cout << "trois case" << ((env.grid())[1][0]).is_empty()<< endl;
+	//cout << (((env.grid())[1][0]).bacteria())->w() << endl;
+	
+
+ 	cout << "quatre case" << ((env.grid())[1][1]).is_empty() << endl;
+	//cout << (((env.grid())[1][1]).bacteria())->w() << endl;
+
+	cout << endl;
+	cout << "TOTAL" << endl;
+	cout << "L " << env.L() << endl;
+	cout << "S " << env.S() << endl;
+
 }
 
 void test_case(){
@@ -136,4 +166,11 @@ void test_case(){
 	cout << " >> Test death" << endl;
 	cout << "case1.death() : " << case1.death() << endl;
 	cout << case1.bacteria() << endl;
+	
+	cout << " >> Test metabolism" << endl;
+	case1.metabolism();
+	organites = case1.external_c();	
+	for(vector<float>::const_iterator it = organites.begin(); it != organites.end(); ++it){
+	cout << *it << endl;
+	}
 }

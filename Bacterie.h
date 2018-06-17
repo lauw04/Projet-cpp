@@ -30,7 +30,7 @@ class Bacterie{
   //Attributs  
 	float W_min_; //la fitness minimale
 	float Pdeath_;
-	vector<float> internal_c_ = {1,2,3}; //vecteur de concentrations des métabolites dans la cellule (A, B, C)
+	vector<float> internal_c_ = {0,0,0}; //vecteur de concentrations des métabolites dans la cellule (A, B, C)
 };
 
 
