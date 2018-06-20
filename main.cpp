@@ -9,168 +9,112 @@
 #include <vector>
 using namespace std;
 
-void test_bacterie();
-void test_environnement();
-void test_case();
+#define couleur(param) printf("\033[%sm",param)
 
-int main(){
-  srand(time(NULL));
-  cout << "Hello world !" << endl;
-  //test_bacterie();
-	cout << endl;
-  //test_case();
-	cout << endl;
-	test_environnement();
-  return 0;
+void Rdiagram(int Tmin, int Tmax, float Amin, float Amax, int Pt, float Pa, float Pmut, float D);
+void diagram(int Tmin, int Tmax, int Amin, int Amax, int Pt, int Pa, float Pmut);
+
+//==============================
+//    MAIN
+//==============================
+
+int main(int argc, char const *argv[])
+{   
+	start :
+	cout << "Vous vous apretez a simuler le developpement cellulaire de deux lignees en situation de crossfeeging." << endl;
+	//cout << "Pour effectuer une simulation, tapez 1." << endl;
+	//cout << "Pour obtenir un diagramme de phase du systeme, tapez 2." << endl;
+	//int n;
+	//cin >> n;
+	float D = 0.1;
+	int t;
+	//if(n==1){
+		cout << "Veuillez entrer un temps de simulation : " << endl;
+		cin >> t;
+		cout << "C'est parti!" << endl;
+		Environnement env;
+		env.run(t);
+		system("Rscript Chroniques.R Chroniques.txt Chroniques.jpeg");
+		system("Rscript Fitness.R Fitness.txt Fitness.jpeg");
+		
+		cout << "Fin de la simulation. Visualisez les courbes de population des 2 genotypes dans le fichier Chroniques.jpeg." << endl;
+		cout << "Visualisez les courbes de fitness moyenne des 2 genotypes dans le fichier Fitness.jpeg." << endl;
+	//}
+	/*else if(n==2){
+		float Amin, Amax, iA, Pmut;
+		int Tmin, Tmax, iT;
+		cout << "Veuillez rentrer les valeurs suivantes, pour definir les axes du diaramme : Amin (>=0)" << endl;
+		cin >> Amin;
+		cout << "Amax (<=50) :" << endl;
+		cin >> Amax;
+		cout << "Increment pour Ainit : " << endl;
+		cin >> iA;
+		cout << "Tmin (>= 1): " << endl;
+		cin >> Tmin;
+		cout << "Tmax (<= 1500): " << endl;
+		cin >> Tmax;
+		cout << "Increment pour T : " << endl;
+		cin >> iT;
+		cout << "C'est parti!" << endl;
+		
+		Rdiagram(Tmin,Tmax,Amin,Amax,iT,iA,D);
+		system("Rscript Plot_heatmap_p.R Rdiagram.txt Diagramme.pdf");
+		
+		cout << "Fin de la simulation. Visualisez le diagramme dans le fichier Diagramme.pdf." << endl;
+	}
+	else{
+		cout << "Vous devez taper 1 ou 2 " << endl;
+	}*/
+	int again;
+	cout << "Relancer le programme? Tapez 3. Sinon, n'importe quoi d'autre." << endl;
+	cin >> again;
+	if(again == 3){
+		goto start;
+	}
+	cout << "Bye!" << endl;
+    return 0;
 }
 
-void test_bacterie(){
-	cout << "TEST BACTERIE" << endl;
-	cout << "Test constructeur bactérie lignée L" << endl;
-	Lignee_L b1(0.1, 0.1);
-	cout << "Raa = " << b1.Raa() << endl;
-	cout << "Rab = " << b1.Rab() << endl;
+//==============================
+//    FUNCTIONS
+//==============================
 
-	cout << "Test constructeur bactérie lignée S" << endl;
-	Lignee_S b2(0.1, 0.1);
-	cout << "Rbb = " << b2.Rbb() << endl;
-	cout << "Rbc = " << b2.Rbc() << endl;
-
-	cout << "Test méthode métabolisme" << endl;
-	vector<float> organites1 = b1.internal_c();
-	vector<float> organites2 = b2.internal_c();
-	for(vector<float>::const_iterator it = organites1.begin(); it != organites1.end(); ++it){
-		cout << *it << endl;
+/**
+ * Computes the final state of the simulations for each Ainit and T and write them in a file 
+ * Parameters are the extremal values of the diagram axis, and the step for each one.
+ * Mutation probability and diffusion constant are also asked
+ */
+/*void Rdiagram(int Tmin, int Tmax, float Amin, float Amax, int Pt, float Pa, float D){
+	ofstream file("Rdiagram.txt", ios::out | ios::trunc);
+	if(file){ 
+		int cpt = 0;
+		file << "Ainit " << "T " << "val" << endl;
+		int nb_it = (Tmax-Tmin+Pt)/Pt*(Amax-Amin+Pa)/Pa;
+		for(int T=Tmin; T<=Tmax; T+=Pt){
+			for (float A=Amin; A<=Amax; A+=Pa){
+				cpt++;
+				cout << " Simulation " << cpt << " / " << nb_it << ", Ainit = " << A << " T = " << T;				
+				Environnement env = Environnement(A,T,D,Pmut);
+				float result = env.run_diagram(1000);
+				file << A << " " << T << " " << result << endl;
+				if (result==0){
+					couleur("30");
+					printf("			Extinction \n");
+				}
+				else if (result==1){
+					couleur("31");
+					printf("			Selection \n");
+				}
+				else{
+					couleur("32");
+					printf("			Cohabitation \n");
+				}
+				couleur("0");
+			}
+		}
+		file.close();		
+	}	
+	else{
+		cerr << "File opening error !" << endl;
 	}
-	for(vector<float>::const_iterator it = organites2.begin(); it != organites2.end(); ++it){
-		cout << *it << endl;
-	}
-	cout << endl;
-	double c_ext_a = b1.metabolism(0.5);
-	double c_ext_b = b2.metabolism(0.2);
-	cout << "Nouvelle concentration externe A : " << c_ext_a << endl;
-	cout << "Nouvelle concentration externe B : " << c_ext_b << endl;
-	vector<float> organites3 = b1.internal_c();
-	vector<float> organites4 = b2.internal_c();
-	for(vector<float>::const_iterator it = organites3.begin(); it != organites3.end(); ++it){
-		cout << *it << endl;
-	}
-	for(vector<float>::const_iterator it = organites4.begin(); it != organites4.end(); ++it){
-		cout << *it << endl;
-	}
-
-	cout << "Test getter w (fitness)" << endl;
-	cout << "Fitness b1 : " << b1.w() << endl;
-	cout << "Fitness b2 : " << b2.w() << endl;
-
-  cout << "Test méthode division" << endl;
-	b1.division();
-	vector<float> organites5 = b1.internal_c();
-	for(vector<float>::const_iterator it = organites5.begin(); it != organites5.end(); ++it){
-		cout << *it << endl;
-	}
-	
-	cout << "Test setter de concentration interne" << endl;
-	b1.set_internal_c(organites1);
-	for(vector<float>::const_iterator it = organites1.begin(); it != organites1.end(); ++it){
-		cout << *it << endl;
-	}
-}
-
-void test_environnement(){
-	cout << "TEST ENVIRONNEMENT" << endl;
-
-	cout << " >> test ctor et getters" << endl;
-  	Environnement env(2, 2, 0.3, 2, 2, 5, 5000, 0.0);
-	/*cout << "W = " << env.W() << endl;
-	cout << "H = " << env.H() << endl;
-	cout << "Ainit = " << env.Ainit() << endl;
-	cout << "D = " << env.D() << endl;
-	cout << "L = " << env.L() << endl;
-	cout << "S = " << env.S() << endl;
-	cout << "T = " << env.T() << endl;
-	cout << "Pmut = " << env.Pmut() << endl;*/
-
-	cout << " >> test competition" << endl;
-
-	cout << endl;
-	cout << "TOTAL" << endl;
-	cout << "L " << env.L() << endl;
-	cout << "S " << env.S() << endl;
-
-	cout << "premiere case" << (((env.grid())[0][0]).bacteria())->nature() << endl;
-
-	cout << "deux case" << (((env.grid())[0][1]).bacteria())->nature() << endl;
-
-	cout << "trois case" << (((env.grid())[1][0]).bacteria())->nature() << endl;
-
-	cout << "quatre case" << (((env.grid())[1][1]).bacteria())->nature() << endl;
-
-  	env.death();
- 	env.competition();
-
- 	cout << "premiere case" << ((env.grid())[0][0]).is_empty() << endl;
-	//cout << (((env.grid())[0][0]).bacteria())->w() << endl;
-
-
- 	cout << "deux case " << ((env.grid())[0][1]).is_empty() << endl;
-	//cout << (((env.grid())[0][1]).bacteria())->w() << endl;
-	
-
- 	cout << "trois case" << ((env.grid())[1][0]).is_empty()<< endl;
-	//cout << (((env.grid())[1][0]).bacteria())->w() << endl;
-	
-
- 	cout << "quatre case" << ((env.grid())[1][1]).is_empty() << endl;
-	//cout << (((env.grid())[1][1]).bacteria())->w() << endl;
-
-	cout << endl;
-	cout << "TOTAL" << endl;
-	cout << "L " << env.L() << endl;
-	cout << "S " << env.S() << endl;
-
-}
-
-void test_case(){
-	cout << "TEST CASE" << endl;
-	cout << " >> test ctor et getters" << endl;
-	Case case1;
-	vector<float> organites = case1.external_c();
-	cout << "external_c_ : " << endl;
-	for(vector<float>::const_iterator it = organites.begin(); it != organites.end(); ++it){
-		cout << *it << endl;
-	}
-	
-	cout << " >> test is_empty()" << endl;
-	cout << "case1.is_empty() : " << case1.is_empty() << endl;
-	
-	cout << " >> test setters" << endl;
-	organites[1] = 2. ; organites[2] = 3.;
-	case1.set_external_c(organites);
-	vector<float> organites2 = case1.external_c();
-	cout << "external_c : " << endl;
-	for(vector<float>::const_iterator it = organites2.begin(); it != organites2.end(); ++it){
-	cout << *it << endl;
-	}
-	
-	case1.set_bacteria('L');
-	cout << "case1.is_empty() : " << case1.is_empty() << " bacteria_ : " << case1.bacteria() << endl;
-	
-	cout << " >> Test reset" << endl;
-	case1.reset(5.);
-	organites = case1.external_c();
-	for(vector<float>::const_iterator it = organites.begin(); it != organites.end(); ++it){
-	cout << *it << endl;
-	}
-
-	cout << " >> Test death" << endl;
-	cout << "case1.death() : " << case1.death() << endl;
-	cout << case1.bacteria() << endl;
-	
-	cout << " >> Test metabolism" << endl;
-	case1.metabolism();
-	organites = case1.external_c();	
-	for(vector<float>::const_iterator it = organites.begin(); it != organites.end(); ++it){
-	cout << *it << endl;
-	}
-}
+}*/

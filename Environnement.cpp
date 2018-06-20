@@ -3,6 +3,9 @@
 #include <cstdlib>
 #include "Environnement.h"
 #include "Case.h"
+#include <fstream>
+
+#define couleur(param) printf("\033[%sm",param)
 
 //Constructors
 Environnement::Environnement(){
@@ -205,16 +208,13 @@ void Environnement::competition(){
   for (int i=0; i<H_;++i){ //hauteur
     for (int j=0; j<W_; j++){ //largeur
       if(grid_[i][j].is_empty()== true){ //look for empty case
-      	cout << "coucou " << i << " " << j << endl;
         int max_fitness=0;
         int v_max;
         int h_max;
         //browser neighbourhood
         for (int l=-1; l<2;l++){ //hauteur
           for (int k=-1; k<2; k++){ //largeur
-          	cout << "coucou bis" << endl;
             if(!(k==0 && l==0)){
-            cout << "coucou ter" << endl;
               int v;
               int h;
               //edge conditions
@@ -239,12 +239,10 @@ void Environnement::competition(){
               }
               
 
-              cout << h << " " << v << endl;
               //test if the neighbourhood case contains a cell
               if(grid_[h][v].is_empty() == false){
-              	cout << "coucou 4" << endl;//the neighbourhood case contains a cell
+              //the neighbourhood case contains a cell
               //looks for the neighbouring cell with highest fitness
-              	cout << "fitness " << (grid_[h][v].bacteria())->w() << endl;
                 if((grid_[h][v].bacteria())->w() > max_fitness){
                   max_fitness = (grid_[h][v].bacteria())->w();
                   //cout  << "fitness max" << max_fitness << endl;
@@ -258,7 +256,6 @@ void Environnement::competition(){
         //cout << (grid_[h_max][v_max].bacteria())->nature() << endl;
         //cout << h_max << " " << v_max << endl;
         if(max_fitness>0){ //the dividing cell will mutate
-        	cout << h_max << " " << v_max << endl;
           float number = (float)rand() / (float)RAND_MAX;
           //fill the case with adequate cell (mutating...)
           char c;
@@ -282,13 +279,7 @@ void Environnement::competition(){
               L_++;
             }
           }
-          cout << c << endl;
           vector <float> metabolites = (grid_[h_max][v_max].bacteria())->division();
-          cout << endl;
-          cout << "METABOLITES" << endl;
-          for(vector<float>::const_iterator it = metabolites.begin(); it != metabolites.end(); ++it){
-			cout << *it << endl;
-			}
           if(number >= Pmut_){
             delete grid_[h_max][v_max].bacteria();
             grid_[h_max][v_max].set_bacteria(c);
@@ -317,28 +308,111 @@ void Environnement::metabolism(){
 	}
 }
 
-int Environnement::run(){
-	for (int t=0; t<t_simul_; ++t){
-		if (t%(T_) == 0){
-			reset();
+
+int Environnement::show(){
+	for (int i=0; i<H_; i++){
+		for(int j=0; j<W_; j++){
+			if((grid_[i][j].bacteria())->nature() == 1){
+				couleur("34");
+				printf("a ");
+				couleur("0");
+			}
+			else if((grid_[i][j].bacteria())->nature() == 2){
+				couleur("31");
+				printf("b ");
+				couleur("0");
+			}
+			else{
+				cout << "  ";
+			}
 		}
-		diffusion();
-		//death();
-		//competition();
-	  /*for(int i=0; i<10; ++i){
-			metabolism();
-		}*/
+		cout << endl;
 	}
-	if (L_ == 0 && S_ == 0){
-		return 0; //Extinction
+	if(S_==0){
+		if(L_==0){
+			cout << "Extinction" << endl;
+			return 0;
+		}
+		else{
+			cout << "Exclusion" << endl;
+			return 1;
+		}
 	}
-	else if (L_ != 0 && S_ != 0){
-		return 1; //Cohabitation
+	else{
+		if(L_==0){
+			cout << "Selection" << endl;
+			return 1;
+		}
+		else{
+			cout << "Cohabitation" << endl;
+			return 2;
+		}
 	}
-	else if (L_ != 0 && S_ == 0){
-		return 2; //Exclusion
+}
+
+/**
+ * returns 0 in case of extinction, 1 in case of exclusion and 2 in case of cohabitation
+ **/
+int Environnement::state(){
+	if(S_ == 0 and L_ ==0){
+		return 0;
 	}
-	else {
-		return 2; //Exclusion l = 0 et s != O
-	}			
+	if(L_== 0 or S_ == 0){
+		return 1;
+	}
+	return 2;
+}
+
+
+int Environnement::run(int t){
+	ofstream file("Chroniques.txt", ios::out | ios::trunc);
+	ofstream file2("Fitness.txt", ios::out | ios::trunc);
+	int nb = 0;
+	int sumL;
+	int sumS;
+	if(file){  
+		file2 << "t " << "meanL " << "meanS" << endl; 
+		file << "t " << "L_ " << "S_" << endl;
+		show();
+		
+		for (int k=0; k<t; k++){
+			cout << k << endl;
+			if(k%(T_) == 0){
+				reset();
+			}
+			
+			sumL = 0;
+			sumS = 0;
+			for (int i=0; i<H_; i++){
+				for(int j=0; j<W_; j++){
+					if(grid_[i][j].is_empty()!=1){
+						if((grid_[i][j].bacteria())->nature()==1){
+							sumL += (grid_[i][j].bacteria())->w();
+						}
+						else{
+							sumS += (grid_[i][j].bacteria())->w();
+						}
+					}
+				}
+			}
+			file2 << k << " " << sumL/L_ << " " << sumS/S_ << endl;
+				diffusion();
+				death();
+				competition();
+				nb = show();
+			  	for(int i=0; i<10; ++i){
+					metabolism();
+				}
+				file << k << " " << L_ << " " << S_ << endl;
+				if(nb == 0){
+					break;
+				}
+		}
+		file.close();
+		file2.close();
+	}	
+	else{
+		cerr << "File opening error !" << endl;
+	}
+	return nb;			
 }

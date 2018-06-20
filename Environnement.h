@@ -33,7 +33,9 @@ class Environnement {
 	void diffusion();
 	void competition();
 	void metabolism();
-	int run();
+	int show();
+	int state();
+	int run(int t);
     
   protected :
 	//Attributs
