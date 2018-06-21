@@ -43,7 +43,7 @@ int main(int argc, char const *argv[])
 	/*else if(n==2){
 		float Amin, Amax, iA, Pmut;
 		int Tmin, Tmax, iT;
-		cout << "Veuillez rentrer les valeurs suivantes, pour definir les axes du diaramme : Amin (>=0)" << endl;
+		cout << "Veuillez rentrer les valeurs suivantes, pour definir les axes du diagramme : Amin (>=0)" << endl;
 		cin >> Amin;
 		cout << "Amax (<=50) :" << endl;
 		cin >> Amax;
